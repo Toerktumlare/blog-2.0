@@ -7,6 +7,7 @@ await esbuild.build({
     logLevel: "info",
     bundle: true,
     sourcemap: 'inline',
+    define: { "process.env.NODE_ENV": '"production"' }
 })
 
 fs.copyFile('public/index.html', 'dist/index.html', (err) => {

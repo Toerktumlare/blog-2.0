@@ -1,0 +1,29 @@
+:root {
+    --main-bg-color: #222225
+}
+
+h1 {
+    font-family: 'Ubuntu Mono';
+    font-size: 50px;
+    color: white;
+}
+
+h4 {
+    font-family: 'Ubuntu Mono';
+    font-size: 30px;
+    color: white;
+}
+
+p {
+    font-family: 'Ubuntu Mono';
+    font-size: 30px;
+    color: white;
+}
+
+body {
+    background-color: rgb(34, 34, 37)
+}
+
+div {
+    color: white;
+}

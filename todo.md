@@ -1,0 +1,26 @@
+- [ ] implement react router
+- [ ] build about me page
+- [ ] build ghost component
+- [ ] component for preview
+- [ ] blinking prompt char
+- [ ] loading frontmatter
+- [ ] loading mdx
+- [ ] tag component
+- [ ] styleguide route
+- [ ] define all headers
+- [ ] setup global css colors
+- [ ] responsivness...
+- [ ] build error page with unicorn, nyan cat
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]

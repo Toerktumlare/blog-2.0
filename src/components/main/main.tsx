@@ -1,15 +1,21 @@
 import * as React from "react"
+import globals from "./main.module.css";
 import styles from "./main.module.css";
+import Header from "../header/header";
+import { Outlet } from "react-router-dom";
+import Footer from "../footer/footer";
+
 
 export default function Main({ children }: MainProps) {
-
   return (
     <div className={styles.main}>
-      {children}
+      <Header />
+      <Outlet />
+      <Footer />
     </div>
   )
 }
 
 interface MainProps {
-  children: React.ReactElement;
+  children?: JSX.Element | string | JSX.Element[]
 }

@@ -10,5 +10,5 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps ) {
 }
 
 interface LayoutWrapperProps {
-    children: React.ReactElement;
+  children: JSX.Element | JSX.Element[]
 }
