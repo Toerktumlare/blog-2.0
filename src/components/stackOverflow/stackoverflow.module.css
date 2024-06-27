@@ -1,0 +1,7 @@
+.container {
+  padding-top: 40px;
+}
+
+.container > a:hover {
+  background-color: var(--main-bg-color);
+}

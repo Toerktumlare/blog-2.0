@@ -1,25 +1,52 @@
 .menu {
+  padding-top: 20px;
   display: flex;
   justify-content: space-between;
-}
-
-ul {
-  list-style: none;
-  margin: 10px 0px 10px 0px;
-  padding: 0px;
-}
-
-.horizontalList {
-  display: inline-block;
-  margin-right: 10px;
-  /* add spacing between items */
-}
-
-.menuItem {
-  font-size: 20px;
   font-family: "Ubuntu Mono";
+  font-size: 20px;
+  line-height: var(--global-line-height);
+}
+
+.logo > a::before {
+  content: ">";
+  margin-right: 10px;
+}
+
+.listItem {
+  display: inline-block;
+}
+
+:global li a:visited { 
+  color: var(--secondary-color);
+}
+
+li:first-of-type {
+  margin-right: 30px;
 }
 
 .logo {
+  color: var(--primary-text-color);
   font-weight: 600;
+  margin: 0px 0px 10px 0px;
+  padding: 0px;
+}
+
+.blink_me {
+  animation: blinker 1s ease-in-out infinite;
+}
+
+@keyframes blinker {
+  1% {
+    opacity: 0;
+  }
+}
+
+.thicc {
+  font-weight: 900;
+}
+
+.logo > a::after {
+  animation: blinker 1s ease-in-out infinite;
+  color: var(--primary-text-color);
+  content: "|";
 }

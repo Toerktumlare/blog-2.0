@@ -1,8 +1,10 @@
 import React from "react";
+import "../../global.css";
+import styles from "./stackoverflow.module.css"
 
 export default function StackOverflow() {
   return (
-    <div>
+    <div className={ styles.container }>
       <a href="https://stackexchange.com/users/2064278">
         <img
           src="https://stackexchange.com/users/flair/2064278.png?theme=dark"

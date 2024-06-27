@@ -26,7 +26,7 @@ let ctx = await esbuild.context({
 
 await ctx.watch();
 
-let { host, port } = await ctx.serve({
+let { _host, _port } = await ctx.serve({
   servedir: "dist/",
   fallback: `dist/index.html`,
 });

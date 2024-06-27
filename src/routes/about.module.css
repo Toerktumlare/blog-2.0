@@ -1,0 +1,22 @@
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+:global p {
+  font-size: 20px;
+}
+
+p {
+  margin-bottom: 28px;
+}
+
+.rounded_corners {
+  border-radius: 8px;
+}
