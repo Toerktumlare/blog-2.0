@@ -5,5 +5,5 @@ export enum Tags {
   Spring = "spring",
   Java = "java",
   SpringSecurity = "spring-security",
-  Jwt = "jwt"
+  Jwt = "jwt",
 }

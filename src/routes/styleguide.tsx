@@ -1,6 +1,6 @@
-import React from "react"
-import BlogCard from "../components/cards/BlogCard"
-import { Tags } from "../utils/tags"
+import React from "react";
+import BlogCard from "../components/cards/BlogCard";
+import { Tags } from "../utils/tags";
 
 function Styleguide() {
   return (
@@ -24,10 +24,14 @@ function Styleguide() {
       <br />
       <s>This is some strikethrough text</s>
       <br />
-      <BlogCard header="Some BlogBost" date={new Date(Date.now())} body="Some body of some blogpost" tags={[Tags.Java, Tags.Rust]} />
+      <BlogCard
+        header="Some BlogBost"
+        date={new Date(Date.now())}
+        body="Some body of some blogpost"
+        tags={[Tags.Java, Tags.Rust]}
+      />
     </div>
-  )
+  );
 }
 
-
-export default Styleguide
+export default Styleguide;

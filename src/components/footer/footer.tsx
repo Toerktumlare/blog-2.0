@@ -1,11 +1,11 @@
-import React from "react"
+import React from "react";
 
 export default function Footer() {
   return (
     <footer>
-        © {new Date().getFullYear()}, Built by
-        {` `}
-        <a href="http://www.github.com/toerktumlare">toerktumlare</a>
+      © {new Date().getFullYear()}, Built by
+      {` `}
+      <a href="http://www.github.com/toerktumlare">toerktumlare</a>
     </footer>
-  )
+  );
 }

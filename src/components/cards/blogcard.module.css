@@ -1,0 +1,7 @@
+.white {
+  color: var(--primary-text-color);
+}
+
+.gray {
+  color: var(--color-gray-700);
+}

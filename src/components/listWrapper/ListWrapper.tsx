@@ -1,14 +1,15 @@
-import React from 'react'
+import React from "react";
 
-export default function ListWrapper({ items }: ListWrapperProps) {
+export default function ListWrapper({ items, className }: ListWrapperProps) {
   const listItems = items.map((value, i) => <li key={i}>{value}</li>);
   return (
-    <ul>
-      {listItems}
-    </ul>
-  )
+    <div className={className}>
+      <ul>{listItems}</ul>
+    </div>
+  );
 }
 
 interface ListWrapperProps {
-  items: React.ReactElement[]
+  className?: string;
+  items: React.ReactElement[];
 }

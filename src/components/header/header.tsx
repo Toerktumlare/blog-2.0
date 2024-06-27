@@ -1,5 +1,5 @@
-import React from "react"
-import Menu from "../menu/menu"
+import React from "react";
+import Menu from "../menu/menu";
 import { standard } from "./header.module.css";
 
 const Header = () => {
@@ -7,7 +7,7 @@ const Header = () => {
     <header className="terminal-nav">
       <Menu />
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

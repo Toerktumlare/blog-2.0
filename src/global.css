@@ -1,0 +1,146 @@
+:root {
+  --main-bg-color: #222225;
+  --primary-header-color: #62c4ff;
+  --primary-text-color: #e8e9ed;
+  --purple-color: #7a34ed;
+  --color-gray-700: rgb(191, 219, 247);
+  --global-line-hwight: 28px;
+  --global-line-height: 1.4em;
+}
+
+h1 {
+  font-family: "Ubuntu Mono";
+  font-size: 52px;
+  font-weight: 600;
+  margin-top: 15;
+  margin-bottom: 0;
+  color: var(--primary-header-color);
+  line-height: var(--global-line-height);
+}
+
+h2 {
+  font-family: "Ubuntu Mono";
+  font-size: 42px;
+  font-weight: 600;
+  margin-top: 15;
+  margin-bottom: 0;
+  color: var(--primary-header-color);
+  line-height: var(--global-line-height);
+}
+
+h3 {
+  font-family: "Ubuntu Mono";
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 15;
+  margin-bottom: 0;
+  color: var(--primary-header-color);
+  line-height: var(--global-line-height);
+}
+
+h4 {
+  font-family: "Ubuntu Mono";
+  font-size: 22px;
+  margin-top: 15;
+  color: var(--primary-header-color);
+  line-height: var(--global-line-height);
+}
+
+h5 {
+  font-family: "Ubuntu Mono";
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 15;
+  color: var(--primary-header-color);
+  line-height: var(--global-line-height);
+}
+
+h6 {
+  font-family: "Ubuntu Mono";
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--primary-header-color);
+  line-height: var(--global-line-height);
+}
+
+p {
+  font-family: "Ubuntu Mono";
+  font-size: 20px;
+  color: var(--primary-text-color);
+  line-height: var(--global-line-height);
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: var(--global-line-height);
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+a:link {
+  color: var(--primary-header-color);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--primary-header-color);
+}
+
+a:hover {
+  background-color: var(--primary-header-color);
+  color: var(--main-bg-color);
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.ml20 {
+  margin-left: 20px;
+}
+
+.mr20 {
+  margin-right: 20px;
+}
+
+.mt50 {
+  margin-top: 50px;
+}
+
+.mb50 {
+  margin-bottom: 50px;
+}
+
+.ml50 {
+  margin-left: 50px;
+}
+
+.mr50 {
+  margin-right: 50px;
+}
+
+.mt100 {
+  margin-top: 100px;
+}
