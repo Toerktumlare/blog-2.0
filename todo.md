@@ -16,7 +16,7 @@
 - [ ] build error page with unicorn, nyan cat
 
 # footer
-- [ ] add some correct css
+- [x] add some correct css
 
 # misc
 - [x] implement react router
@@ -26,7 +26,7 @@
 - [/] setup global css colors
 - [ ] responsivness...
 - [ ] change hovering to be only on text for the menu
-- [ ]
+- [ ] load css earlier so it does not show the previous styles first
 - [ ]
 - [ ]
 - [ ]

@@ -10,7 +10,7 @@ export default function Main({ children }: MainProps) {
     <div className={styles.main}>
       <Header />
       <Outlet />
-      <Footer />
+      <Footer className="pt 10 pb10" />
     </div>
   );
 }

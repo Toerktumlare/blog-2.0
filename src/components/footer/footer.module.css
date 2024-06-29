@@ -1,0 +1,11 @@
+.small {
+    font-size: 14px;
+}
+
+.text {
+    color: var(--tertiery-color);
+}
+
+.bold {
+    font-weight: 600;
+}
