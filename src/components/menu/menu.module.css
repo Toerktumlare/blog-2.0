@@ -32,12 +32,16 @@ li:first-of-type {
 }
 
 .blink_me {
-  animation: blinker 1s ease-in-out infinite;
+  animation: blinker 0.8s infinite;
 }
 
 @keyframes blinker {
-  1% {
+  0%, 100% {
     opacity: 0;
+  }
+
+  50% {
+    opacity: 1
   }
 }
 
@@ -49,4 +53,9 @@ li:first-of-type {
   animation: blinker 1s ease-in-out infinite;
   color: var(--primary-text-color);
   content: "|";
+}
+
+.menu li a:hover {
+  background-color: var(--main-background);
+  color: var(--primary-text-color);
 }

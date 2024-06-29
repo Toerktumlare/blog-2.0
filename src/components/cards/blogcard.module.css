@@ -5,3 +5,20 @@
 .gray {
   color: var(--color-gray-700);
 }
+
+.container ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.container ul > li {
+  display: inline-block;
+  margin: 0px;
+  padding-right: 10px;
+}
+
+.container .date {
+  color: var(--color-gray-700);
+  font-size: 14px;
+
+}

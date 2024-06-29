@@ -7,7 +7,9 @@ import StackOverflow from "../components/stackOverflow/StackOverflow";
 export default function About() {
   return (
     <div className={`${styles.row} pt75 pb50`}>
-      <img src={City} alt="Logo" className={`${ styles.rounded_corners} flex1`} />
+      <div className={styles.image}>
+        <img src={City} alt="Logo" className={`${ styles.rounded_corners} flex1`} />
+      </div>
       <div className={`${styles.column} flex1`}>
         <p>Coder by day, coder by night.</p>
         <p>

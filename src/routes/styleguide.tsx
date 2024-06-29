@@ -1,5 +1,5 @@
 import React from "react";
-import BlogCard from "../components/cards/BlogCard";
+import BlogCard from "../components/cards/blogcard";
 import { Tags } from "../utils/tags";
 
 function Styleguide() {

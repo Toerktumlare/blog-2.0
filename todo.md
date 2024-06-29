@@ -9,8 +9,8 @@
 - [x] add some correct CSS
 
 # main page
-- [ ] tag component
-- [ ] component for preview
+- [x] tag component
+- [x] component for preview
 
 # error page
 - [ ] build error page with unicorn, nyan cat
@@ -27,7 +27,7 @@
 - [ ] responsivness...
 - [ ] change hovering to be only on text for the menu
 - [ ] load css earlier so it does not show the previous styles first
-- [ ]
+- [ ] fix padding on sides global (remove from main)
 - [ ]
 - [ ]
 - [ ]

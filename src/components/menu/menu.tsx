@@ -10,7 +10,6 @@ const Menu = () => {
         <Link to={`/`}>
           /home/toerktumlare/
         </Link>
-        {/* <b className={`${styles.blink_me} ${styles.thicc}`}>|</b> */}
       </div>
       <div>
         <ul>

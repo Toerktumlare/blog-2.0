@@ -2,12 +2,15 @@ import React from "react";
 import { Tags } from "../../utils/tags";
 import styles from "./blogcard.module.css";
 import "../../global.css";
+import Tag from "../tag/tag";
 
-function BlogCard({ header, date, body, tags }: BlogCardProps) {
+function BlogCard({ header, date, body, tags, className }: BlogCardProps) {
   const tagList = (
     <ul>
-      {tags.map((tag, i) => (
-        <li key={i}>#{tag}</li>
+      {tags.map((tagText, i) => (
+        <li key={i}>
+          <Tag text={tagText} />
+        </li>
       ))}
     </ul>
   );
@@ -19,12 +22,20 @@ function BlogCard({ header, date, body, tags }: BlogCardProps) {
   });
 
   return (
-    <div className="mt50">
-      <h3 className="mt20 mb10">{header}</h3>
-      <h6 className={`${styles.white} ${styles.gray} mt10`}>{d}</h6>
-      <p className="mt10">{body}</p>
-      {tagList}
-    </div>
+    <article className={`${className} ${styles.container}`}>
+      <header className="pb20">
+        <h3>{header}</h3>
+      </header>
+      <section className="pb20">
+        <p className={styles.date}>{d}</p>
+      </section>
+      <section className="pb20">
+        <p>{body}</p>
+      </section>
+      <footer>
+        {tagList}
+      </footer>
+    </article>
   );
 }
 
@@ -33,6 +44,7 @@ interface BlogCardProps {
   date: Date;
   body: string;
   tags: Tags[];
+  className?: string
 }
 
 export default BlogCard;

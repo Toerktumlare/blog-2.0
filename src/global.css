@@ -8,14 +8,15 @@
   --color-gray-700: rgb(191, 219, 247);
   --global-line-hwight: 28px;
   --global-line-height: 1.4em;
+  --tag-color: rgb(122, 52, 150);
 }
 
 h1 {
   font-family: "Ubuntu Mono";
   font-size: 52px;
   font-weight: 600;
-  margin-top: 15;
-  margin-bottom: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: var(--primary-color);
   line-height: var(--global-line-height);
 }
@@ -24,8 +25,8 @@ h2 {
   font-family: "Ubuntu Mono";
   font-size: 42px;
   font-weight: 600;
-  margin-top: 15;
-  margin-bottom: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: var(--primary-color);
   line-height: var(--global-line-height);
 }
@@ -34,8 +35,8 @@ h3 {
   font-family: "Ubuntu Mono";
   font-size: 32px;
   font-weight: 600;
-  margin-top: 15;
-  margin-bottom: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: var(--primary-color);
   line-height: var(--global-line-height);
 }
@@ -43,7 +44,8 @@ h3 {
 h4 {
   font-family: "Ubuntu Mono";
   font-size: 22px;
-  margin-top: 15;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: var(--primary-color);
   line-height: var(--global-line-height);
 }
@@ -51,8 +53,9 @@ h4 {
 h5 {
   font-family: "Ubuntu Mono";
   font-size: 18px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   font-weight: 600;
-  margin-top: 15;
   color: var(--primary-color);
   line-height: var(--global-line-height);
 }
@@ -61,8 +64,8 @@ h6 {
   font-family: "Ubuntu Mono";
   font-size: 14px;
   font-weight: 600;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: var(--primary-color);
   line-height: var(--global-line-height);
 }
@@ -154,12 +157,24 @@ a:hover {
   margin-top: 100px;
 }
 
-.pt30 {
+.pt50 {
   padding-top: 30px;
 }
 
 .pt75 {
   padding-top: 75px;
+}
+
+.pt100 {
+  padding-top: 100px;
+}
+
+.pb10 {
+  padding-bottom: 10px;
+}
+
+.pb20 {
+  padding-bottom: 20px;
 }
 
 .pb50 {
@@ -168,4 +183,12 @@ a:hover {
 
 .flex1 {
   flex: 1;
+}
+
+.pl0 {
+  padding-left: 0px;
+}
+
+.pr0 {
+  padding-right: 0px;
 }

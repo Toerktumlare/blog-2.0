@@ -9,11 +9,23 @@
   flex-direction: column;
 }
 
-:global p {
+.row p {
   font-size: 20px;
   margin-bottom: 28px;
 }
 
 .rounded_corners {
   border-radius: 8px;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  flex: 1;
 }
