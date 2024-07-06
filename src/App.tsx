@@ -6,6 +6,9 @@ import About from "./routes/about.tsx";
 import Root from "./routes/root.tsx";
 import "./global.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {MDXProvider} from '@mdx-js/react'
+import Example from "./content/example.mdx"
+import MonadInJava from "./content/monad-in-java/index.mdx"
 
 if (process.env.NODE_ENV !== "production") {
   new EventSource("/esbuild").addEventListener("change", (e) => {
@@ -46,6 +49,14 @@ const router = createBrowserRouter([
         path: "/about",
         element: <About />,
       },
+      {
+        path: "/example",
+        element: <Example />,
+      },
+      {
+        path: "/monad-in-java",
+        element: <MonadInJava />,
+      },
     ],
   },
   {
@@ -56,9 +67,11 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    <LayoutWrapper>
-      <RouterProvider router={router} />
-    </LayoutWrapper>
+    <MDXProvider>
+      <LayoutWrapper>
+        <RouterProvider router={router} />
+      </LayoutWrapper>
+    </MDXProvider>
   );
 };
 

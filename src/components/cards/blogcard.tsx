@@ -3,8 +3,9 @@ import { Tags } from "../../utils/tags";
 import styles from "./blogcard.module.css";
 import "../../global.css";
 import Tag from "../tag/tag";
+import { Link } from "react-router-dom";
 
-function BlogCard({ header, date, body, tags, className }: BlogCardProps) {
+function BlogCard({ header, date, body, tags, className, path }: BlogCardProps) {
   const tagList = (
     <ul>
       {tags.map((tagText, i) => (
@@ -24,7 +25,7 @@ function BlogCard({ header, date, body, tags, className }: BlogCardProps) {
   return (
     <article className={`${className} ${styles.container}`}>
       <header className="pb20">
-        <h3>{header}</h3>
+        <h3><Link to={path}>{header}</Link></h3>
       </header>
       <section className="pb20">
         <p className={styles.date}>{d}</p>
@@ -41,6 +42,7 @@ function BlogCard({ header, date, body, tags, className }: BlogCardProps) {
 
 interface BlogCardProps {
   header: string;
+  path?: string,
   date: Date;
   body: string;
   tags: Tags[];

@@ -8,6 +8,12 @@ await esbuild.build({
   bundle: true,
   sourcemap: "inline",
   define: { "process.env.NODE_ENV": '"production"' },
+  assetNames: "assets/[name]-[hash]",
+  loader: {
+    ".tsx": "tsx",
+    ".jpg": "file",
+    ".css": "css",
+  },
 });
 
 fs.copyFile("public/index.html", "dist/index.html", (err) => {
