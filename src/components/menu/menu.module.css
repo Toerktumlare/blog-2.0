@@ -16,8 +16,8 @@
   display: inline-block;
 }
 
-:global li a:visited { 
-  color: var(--secondary-color);
+.menuLink:visited { 
+    color: var(--secondary-color);
 }
 
 li:first-of-type {

@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {MDXProvider} from '@mdx-js/react'
 import Example from "./content/example.mdx"
 import MonadInJava from "./content/monad-in-java/index.mdx"
+import foobar from "./components/article/h1/h1.tsx";
 
 if (process.env.NODE_ENV !== "production") {
   new EventSource("/esbuild").addEventListener("change", (e) => {
@@ -65,9 +66,13 @@ const router = createBrowserRouter([
   },
 ]);
 
+const component = {
+  h1: foobar
+}
+
 const App = () => {
   return (
-    <MDXProvider>
+    <MDXProvider components={component}>
       <LayoutWrapper>
         <RouterProvider router={router} />
       </LayoutWrapper>

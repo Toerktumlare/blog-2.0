@@ -8,80 +8,80 @@ import Blockquote from "../../../src/components/boxes/blockquote/blockquote.tsx"
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-Monad? What the h…ll is he talking about?
-
+# Monad? What the h…ll is he talking about?
+<br />
 In this post i’m going to try to explain what a monad is, and then we are going to implement a simple Try/Catch Monad in Java.
-
+<br />
 Disclaimer, this is written for beginners that have a hard time understanding what a Monad is. It is not written for experienced functional programmers, and I will avoid any of the philosophical arguments that “real” Monads don’t exist in Java because how Java handles “null” wrongly.
-
+<br />
 This is is for beginners, and is written for beginners.
-
+<br />
 ![elephant](./monad.png)
-
+<br />
 If you google Monads you will see that there are about a million ways of explaining what a Monad is. The explanations range from simple ones to mathematical complex ones, and its kind of hard to grasp what a monad actually is.
-
+<br />
 In the development world Monads have sometimes been mysterious, complex or just plain dark magic. Im not gonna say that Monads are simple, they can be pretty complex. But they are not as hard as you think! 
-
+<br />
 At least not the basics!
-
+<br />
 ![complex](./problem.jpeg)
-
+<br />
 The simplest way of explaining a Monad is to tell you that it is sort of a programming pattern like MVC, Observable or Singeltons.
-
+<br />
 Monads come from the functional programming world and is used in many places in many different ways. But the most concrete explanation id say is that a Monad accepts a type of “something” (this could be an int, string or any other type) and returns a new type containing your “something” type.
-
+<br />
 We can then do computation on the internal value of our Monad and return a new Monad containing our newly calculated value.
-
+<br />
 The picture here describes it, We give the monad a value, and then we can apply a function on the internal value and we return a new or the same type containing our new value. It’s actually not more complicated than that!
-
+<br />
 ![box](./box.png)
-
+<br />
 And if you look at the picture and think a little you will notice that we have monads in Java already Im going to explain some of them and then we are going to implement our own.
-
+<br />
 With this information can you think of a Monad in Java?
-
+<br />
 ## Optional{'<T>'}.java
-
+<br />
 _Optional{'<T>'}_ in java is indeed a Monad!
-
+<br />
 It takes a value and returns a new object of the Optional type. Then we can perform computations on the internal value and it returns an Optional containing our new value!
-
+<br />
 ```java
 Optional<String> value = Optional.of("Hello world")
     .map(s -> s.toUpperCase());
 ```
-
-
+<br />
+<br />
 Here we give it a string, we perform a computation using a lambda expression and we return a new object (of type Optional) containing our new value.
-
+<br />
 ## Streams{'<T>'}
-
+<br />
 Is another example of a Monad. But this time we can give it multiple values. We then perform some sort of computation on the multiple values and are given a new object of type Stream, containing our computed values.
-
+<br />
 ```java
 Stream<String> values = Stream.of("Hello", "World")
     .map(s -> s.toUpperCase());
 ```
-
+<br />
 ## CompletableFuture{'<T>'}
-
+<br />
 Is the newest addition to Monads in java. Unlike Optional and Streams that take values, CompletableFuture takes an async operation and returns a new object of the type CompletableFuture.
-
+<br />
 ```java
 CompletableFuture<String> value = CompletableFuture.supplyAsync(() -> "Hello" + " World")
     .thenApply(s -> s.toUpperCase());
 ```
-
+<br />
 Now that we have seen how monads in Java work on a high level, we can start implementing our own.
-
+<br />
 # The Try/Catch Monad
-
+<br />
 Often in code you will see the use of try/catch blocks to handle errors.
-
+<br />
 Sometimes we even nest try/catch blocks in other try/catch blocks. This is usually pretty ugly and sometimes we end up catching everything in a big giant try catch/block.
-
+<br />
 The Optional{'<T>'} type can help us figure out if there is concrete value in a variable. Maybe we can leverage a Monad to tell us if there has been an exception thrown or not, just like a try/catch block?
-
+<br />
 ```java
 //Our old way..
 int value = null;
@@ -90,38 +90,20 @@ try {
 } catch(NumberFormatException e){
     value = 10;
 }
-
+<br />
 //Maybe our new way?
 int value = Try.ofThrowable(() -> Integer.valueOf("10"))
                 .orElse(10)
                 .get();
 ```
-export const code = `
-//Our old way..
-int value = null;
-try {
-    value = Integer.valueOf("10");
-} catch(NumberFormatException e){
-    value = 10;
-}
-
-//Maybe our new way?
-int value = Try.ofThrowable(() -> Integer.valueOf("10"))
-                .orElse(10)
-                .get();
-`;
-
-<SyntaxHighlighter language = "java" style = { dracula } >
-{code}
-</SyntaxHighlighter>
-
+<br />
 ## Let’s write a Monad! first up Try.class
-
+<br />
 So let’s start out with our base class. This is the class that will take in whatever operation that might throw an exception. This will be written using a lot of java generics so you might need to read up a bit on it before starting.
-
+<br />
 https://www.baeldung.com/java-generics
 (if you need to read up on generics)
-
+<br />
 ```java
 public abstract class Try<T> {
 
@@ -135,11 +117,11 @@ public abstract class Try<T> {
     }
 }
 ```
-
+  
 Our `ofThrowable` method takes in a computation that might throw an exception. This is done using the functional interface `Supplier.class`.
-
+  
 `Supplier.class` is a `@FunctionalInterface` which is just a fancy name for an anonymous class that contains a single method.
-
+  
 ```java
 //Using the interface as an anonymous class
 Try<Integer> value = Try.ofThrowable(new Supplier<Integer>() {
@@ -153,11 +135,11 @@ Try<Integer> value = Try.ofThrowable(new Supplier<Integer>() {
 //Exact same as above but written using a lambda expression
 Try<Integer> value = Try.ofThrowable(() -> Integer.valueOf("1"));
 ```
-
+  
 In the try/catch block we call the method `get()` on the passed in `Supplier`.
-
+  
 If `get()` throws an exception we catch it and pass it to the failure method, if successful we pass our result value to the success method.
-
+  
 ```java
 try {
     return Try.successful(f.get());
@@ -165,13 +147,13 @@ try {
     return Try.failure(e);
 }
 ```
-
+  
 ## Success/Failure methods
-
+  
 Next step is to implement the success and failure methods.
-
+  
 They are pretty straight forward.
-
+  
 ```java
 public static <U> Success<U> successful(U u) {
     return new Success<>(u);
@@ -179,15 +161,15 @@ public static <U> Success<U> successful(U u) {
     return new Failure<>(e);
 }
 ```
-
+  
 In the Success method we take some type, and create a new success class containing our computed value.
-
+  
 In the Failure method, we take our caught exception and create a new failure class containing the thrown exception.
-
+  
 ### Success/Failure classes
-
+  
 These are just two simple classes extending the `Try.class`, containing either a value of something `T` or a `Throwable`.
-
+  
 ```java
 class Success<T> extends Try<T> {
 

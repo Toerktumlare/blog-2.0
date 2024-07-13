@@ -14,12 +14,12 @@ const Menu = () => {
       <div>
         <ul>
           <li className={styles.listItem}>
-            <Link to={`/`}>
+            <Link className={styles.menuLink} to={`/`}>
               ~/home
             </Link>
           </li>
           <li className={styles.listItem}>
-            <Link to={`/about`}>
+            <Link className={styles.menuLink} to={`/about`}>
               ~/about
             </Link>
           </li>

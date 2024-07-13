@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import mdx from '@mdx-js/esbuild'
 import { compile } from '@mdx-js/mdx';
 import remarkFrontmatter from 'remark-frontmatter';
+import remarkImages from 'remark-images';
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import matter from 'gray-matter';
 import remarkPrism from 'remark-prism';
@@ -18,6 +19,7 @@ fs.copyFile("public/index.html", "dist/index.html", (err) => {
 const preProcessMdxFrontmatterPlugin = {
   name: "mdx-with-frontmatter",
   setup(build) {
+    build.onResolve()
     build.onLoad(
       {
         filter: /\.mdx?$/,
@@ -51,15 +53,18 @@ let ctx = await esbuild.context({
   loader: {
     ".tsx": "tsx",
     ".jpg": "file",
+    ".png": "file",
     ".css": "css",
     ".mdx": "jsx",
   },
   plugins: [
     mdx({
+      providerImportSource: "@mdx-js/react",
       remarkPlugins: [
         remarkPrism,
         remarkFrontmatter,
         remarkMdxFrontmatter,
+        remarkImages,
       ]
     })
   ]
