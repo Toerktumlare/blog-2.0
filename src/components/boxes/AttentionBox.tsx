@@ -27,10 +27,12 @@ export function AttentionBox({
       break;
   }
   return (
-    <div
-      className={`${styles.container} ${css} ${styles.border}`}
-    >
-      {children}
+    <div className={ styles.padding }>
+      <div
+        className={`${styles.container} ${css} ${styles.border}`}
+      >
+        {children}
+      </div>
     </div>
   );
 }

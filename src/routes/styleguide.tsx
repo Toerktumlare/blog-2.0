@@ -1,10 +1,10 @@
 import React from "react";
 import BlogCard from "../components/cards/blogcard";
 import { Tags } from "../utils/tags";
-import { DangerBox } from "../components/boxes/DangerBox";
 import WarningBox from "../components/boxes/WarningBox";
 import InfoBox from "../components/boxes/InfoBox";
 import Blockquote from "../components/boxes/blockquote/blockquote";
+import DangerBox from "../components/boxes/DangerBox";
 
 function Styleguide() {
   return (

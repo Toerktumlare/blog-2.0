@@ -7,6 +7,7 @@ import remarkImages from 'remark-images';
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import matter from 'gray-matter';
 import remarkPrism from 'remark-prism';
+import path from "path";
 
 const env = process.env.NODE_ENV || "development";
 
@@ -42,6 +43,51 @@ const preProcessMdxFrontmatterPlugin = {
   },
 };
 
+function copyAssetsPlugin({ sourceDir, outputDir }) {
+  return {
+    name: 'copy-assets',
+    setup(build) {
+      build.onStart(() => {
+        // Function to copy files recursively
+        const copyFilesRecursively = (srcDir, destDir) => {
+          if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+          }
+
+          const items = fs.readdirSync(srcDir);
+
+          items.forEach(item => {
+            const srcPath = path.join(srcDir, item);
+            const destPath = path.join(outputDir, item);
+            const stat = fs.statSync(srcPath);
+
+            // console.log(item);
+            // console.log(srcDir);
+            // console.log(destDir);
+
+            if (stat.isDirectory()) {
+              copyFilesRecursively(srcPath, destPath);
+            } else {
+              const ext = path.extname(item).toLowerCase();
+              if (['.png', '.jpg', '.jpeg', '.gif', '.svg'].includes(ext)) {
+                fs.copyFileSync(srcPath, destPath);
+              }
+            }
+          });
+        };
+
+        // Ensure the output directory exists
+        if (!fs.existsSync(outputDir)) {
+          fs.mkdirSync(outputDir, { recursive: true });
+        }
+
+        // Copy image files recursively from sourceDir to outputDir
+        copyFilesRecursively(sourceDir, outputDir);
+      });
+    }
+  };
+}
+
 let ctx = await esbuild.context({
   entryPoints: ["src/index.jsx"],
   outfile: "dist/bundle.js",
@@ -58,6 +104,7 @@ let ctx = await esbuild.context({
     ".mdx": "jsx",
   },
   plugins: [
+    copyAssetsPlugin({ sourceDir: "src/content", outputDir: "dist/assets" }),
     mdx({
       providerImportSource: "@mdx-js/react",
       remarkPlugins: [

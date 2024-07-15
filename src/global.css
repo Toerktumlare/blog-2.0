@@ -168,8 +168,12 @@ a:hover {
   margin-top: 100px;
 }
 
-.pt50 {
+.pt30 {
   padding-top: 30px;
+}
+
+.pt50 {
+  padding-top: 50px;
 }
 
 .pt75 {

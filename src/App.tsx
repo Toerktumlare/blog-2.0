@@ -7,9 +7,10 @@ import Root from "./routes/root.tsx";
 import "./global.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {MDXProvider} from '@mdx-js/react'
-import Example from "./content/example.mdx"
 import MonadInJava from "./content/monad-in-java/index.mdx"
-import foobar from "./components/article/h1/h1.tsx";
+import Base64InRust from "./content/base64-in-rust/index.mdx"
+import MdxImg from "./components/article/img/mdximg.tsx";
+import { h1 } from "./components/article/h1/h1.tsx";
 
 if (process.env.NODE_ENV !== "production") {
   new EventSource("/esbuild").addEventListener("change", (e) => {
@@ -51,12 +52,12 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/example",
-        element: <Example />,
-      },
-      {
         path: "/monad-in-java",
         element: <MonadInJava />,
+      },
+      {
+        path: "/base64-in-rust",
+        element: <Base64InRust />,
       },
     ],
   },
@@ -67,7 +68,8 @@ const router = createBrowserRouter([
 ]);
 
 const component = {
-  h1: foobar
+  h1: h1,
+  img: MdxImg
 }
 
 const App = () => {
