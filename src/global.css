@@ -9,6 +9,17 @@
   --global-line-hwight: 28px;
   --global-line-height: 1.4em;
   --tag-color: rgb(122, 52, 150);
+
+  --font-color: #e8e9ed;
+  --font-dark-color: #151515;
+  --info-color: #62c4ff;
+  --dark-info-color: #0DA2FB;
+  --warning-color: #c7b02c;
+  --dark-warning-color: #766400;
+  --danger-color: #A31621;
+  --dark-danger-color: #580006;
+
+  font-family: "Ubuntu Mono";
 }
 
 h1 {

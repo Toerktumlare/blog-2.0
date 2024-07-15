@@ -1,21 +1,22 @@
 import React, { type ReactNode } from "react"
 import { FaQuoteLeft } from "react-icons/fa";
+import { AttentionBox, BoxType, Content, Footer, Header } from "../AttentionBox";
 
 export default function Blockquote({ children, source }: QuoteProps) {
   return (
-    <div>
+    <AttentionBox boxtype={BoxType.QUOTE}>
       <div>
-        <div>
+        <Header>
           <FaQuoteLeft size={35} style={{ verticalAlign: 'middle' }} />
-        </div>
+        </Header>
       </div>
-      <div>
+      <Content>
         {children}
-      </div>
-      {source ? <footer>
+      </Content>
+      {source ? <Footer>
         {source}
-      </footer> : null}
-    </div>
+      </Footer> : null}
+    </AttentionBox>
   )
 }
 
