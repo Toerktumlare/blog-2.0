@@ -6,40 +6,38 @@ import ListWrapper, { Spacing } from "../components/listWrapper/listwrapper";
 import styles from "./root.module.css";
 import { frontmatter as monad } from "./../content/monad-in-java/index.mdx";
 import { frontmatter as base64 } from "./../content/base64-in-rust/index.mdx";
+import { frontmatter as cve } from "./../content/cve-2020-0601/index.mdx";
+import { frontmatter as dnsAnatomy } from "./../content/anatomy-of-dns/index.mdx";
+import { frontmatter as dnsCompression } from "./../content/dns-compression/index.mdx";
+
+interface Frontmatter {
+  title: string,
+  path: string,
+  date: string,
+  description: string,
+  tags: [Tags]
+}
+
 
 export default function Root() {
-  const blogList = [
-    <BlogCard
-      header={monad.title}
-      path="/monad-in-java"
-      date={new Date(monad.date)}
-      body={monad.description}
-      tags={[Tags.Java, Tags.Rust]}
-      className="pb50"
-    />,
-    <BlogCard
-      header={base64.title}
-      path="/base64-in-rust"
-      date={new Date(base64.date)}
-      body={base64.description}
-      tags={[Tags.Java, Tags.Rust]}
-      className="pb50"
-    />,
-    <BlogCard
-      header="CVE 2023-1234"
-      date={new Date(Date.now())}
-      body="This is a super dangerous cve"
-      tags={[Tags.Networking, Tags.Dns]}
-      className="pb50"
-    />,
-    <BlogCard
-      header="Some BlogBost"
-      date={new Date(Date.now())}
-      body="Some thing"
-      tags={[Tags.Jwt]}
-      className="pt50"
-    />,
+  const list: Frontmatter[] = [
+    monad, base64, cve, dnsAnatomy, dnsCompression
   ];
+
+  list.sort((a: Frontmatter, b: Frontmatter) => {
+    return Math.abs(new Date(a.date).getTime() - new Date(b.date).getTime());
+  })
+
+  const blogList = list.map((f) => {
+    return (<BlogCard
+      header={f.title}
+      path={f.path}
+      date={new Date(f.date)}
+      body={f.description}
+      tags={[Tags.Java, Tags.Rust]}
+      className="pb50"
+    />)
+  })
 
   return (
     <main className={styles.container}>

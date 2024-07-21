@@ -61,10 +61,6 @@ function copyAssetsPlugin({ sourceDir, outputDir }) {
             const destPath = path.join(outputDir, item);
             const stat = fs.statSync(srcPath);
 
-            // console.log(item);
-            // console.log(srcDir);
-            // console.log(destDir);
-
             if (stat.isDirectory()) {
               copyFilesRecursively(srcPath, destPath);
             } else {
@@ -91,7 +87,7 @@ function copyAssetsPlugin({ sourceDir, outputDir }) {
 let ctx = await esbuild.context({
   entryPoints: ["src/index.jsx"],
   outfile: "dist/bundle.js",
-  logLevel: "info",
+  logLevel: "debug",
   bundle: true,
   sourcemap: "inline",
   define: { "process.env.NODE_ENV": JSON.stringify(env) },

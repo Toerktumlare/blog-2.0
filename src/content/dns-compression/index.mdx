@@ -1,0 +1,300 @@
+---
+title: Compression in DNS messages
+path: "/dns-compression"
+date: "2023-12-11T14:13:00.000Z"
+description: "When writing my DNS client \"Who are you?\" i had no idea that there was compression built into DNS messages. This blog post will explain how compression in DNS messages work and how i went about solving it."
+tags: rust, dns, networking
+---
+
+import WarnBox from "../../../src/components/boxes/WarningBox";
+
+In our [last post](http://blog.toerktumlare.com/anatomy-of-dns/) i went through the anatomy of a DNS request, but one thing i left out is that DNS has some inbuilt compression to try to make messages smaller. I thought we should look at that today and show how i solved it in my DNS client ["Who are you?"](https://github.com/Tandolf/who). How to solve this can be done in many ways and this is not in any way an efficient solution, i just wanted to explain how compression in DNS messages works and one way of solving it.
+
+All the examples here are written in rust, but it's not that much code so it will be quite easy to understand even if you have never coded in rust before.
+
+## So how does it work?
+Compression in DNS messages works in the way that we don't want to repeat strings multiple times in messages if we don't have to. By using pointers within our message, we can reference other strings, when we need to write out the string several times. 
+
+So what does that actually look like?
+
+If we make a request using `who` and ask for this site, `blog.toerktumlare.com`, we get the following response. 
+```bash
+$ who blog.toerktumlare.com
+== Who are you? == v1.0.0 == blog.toerktumlare.com ==
+┌Header──────────────────────────────────────────────────────────────────┐
+│OPCODE: Query, STATUS: NoError id: 32419                                │
+│qr, rd, ra,                                                             │
+│QUERY: 1, ANSWERS: 5, AUTHORITY: 0, ADDITIONAL: 0                       │
+└────────────────────────────────────────────────────────────────────────┘
+┌Message─────────────────────────────────────────────────────────────────┐
+│blog.toerktumlare.com             IN       A                            │
+└────────────────────────────────────────────────────────────────────────┘
+┌Records─────────────────────────────────────────────────────────────────┐
+│blog.toerktumlare.com     2792    IN       CNAME   tandolf.github.io    │
+│tandolf.github.io         2792    IN       A       185.199.110.153      │
+│tandolf.github.io         2792    IN       A       185.199.108.153      │
+│tandolf.github.io         2792    IN       A       185.199.111.153      │
+│tandolf.github.io         2792    IN       A       185.199.109.153      │
+└────────────────────────────────────────────────────────────────────────┘
+┌Statistics──────────────────────────────────────────────────────────────┐
+│Query time: 4 msec                                                      │
+│When: 2023-11-15 18:11:43                                               │
+│Msg SENT: 39 bytes                                                      │
+│Msg RCVD: 134 bytes                                                     │
+└────────────────────────────────────────────────────────────────────────┘
+```
+    <br />
+    <br />
+    <br />
+But if we dump the actual raw bytes sent by using `tcpdump` we get the following.
+```bash
+➜  ~ sudo tcpdump -i any port 53 -X
+tcpdump: data link type LINUX_SLL2
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+14:53:18.781438 lo    In  IP localhost.34041 > localhost.domain: 39295+ [1au] A? blog.toerktumlare.com. (62)
+	0x0000:  4500 005a 4296 0000 4011 39c7 7f00 0001  E..ZB...@.9.....
+	0x0010:  7f00 0035 84f9 0035 0046 fe8d 997f 0120  ...5...5.F......
+	0x0020:  0001 0000 0000 0001 0462 6c6f 670c 746f  .........blog.to
+	0x0030:  6572 6b74 756d 6c61 7265 0363 6f6d 0000  erktumlare.com..
+	0x0040:  0100 0100 0029 04d0 0000 0000 000c 000a  .....)..........
+	0x0050:  0008 450e f971 0825 46f3                 ..E..q.%F.
+14:53:18.781770 lo    In  IP localhost.domain > localhost.34041: 39295 5/0/5 CNAME tandolf.github.io., A 185.199.111.153, A 185.199.108.153, A 185.199.109.153, A 185.199.110.153 (257)
+	0x0000:  4500 011d a258 4000 0111 d841 7f00 0035  E....X@....A...5
+	0x0010:  7f00 0001 0035 84f9 0109 ff50 997f 8180  .....5.....P....
+	0x0020:  0001 0005 0000 0005 0462 6c6f 670c 746f  .........blog.to
+	0x0030:  6572 6b74 756d 6c61 7265 0363 6f6d 0000  erktumlare.com..
+	0x0040:  0100 01c0 0c00 0500 0100 0002 1200 1307  ................
+	0x0050:  7461 6e64 6f6c 6606 6769 7468 7562 0269  tandolf.github.i
+	0x0060:  6f00 c033 0001 0001 0000 0212 0004 b9c7  o..3............
+	0x0070:  6f99 c033 0001 0001 0000 0212 0004 b9c7  o..3............
+	0x0080:  6c99 c033 0001 0001 0000 0212 0004 b9c7  l..3............
+	0x0090:  6d99 c033 0001 0001 0000 0212 0004 b9c7  m..3............
+	0x00a0:  6e99 c033 001c 0001 0000 0212 0010 2606  n..3..........&.
+	0x00b0:  50c0 8003 0000 0000 0000 0000 0153 c033  P............S.3
+	0x00c0:  001c 0001 0000 0212 0010 2606 50c0 8001  ..........&.P...
+	0x00d0:  0000 0000 0000 0000 0153 c033 001c 0001  .........S.3....
+	0x00e0:  0000 0212 0010 2606 50c0 8002 0000 0000  ......&.P.......
+	0x00f0:  0000 0000 0153 c033 001c 0001 0000 0212  .....S.3........
+	0x0100:  0010 2606 50c0 8000 0000 0000 0000 0000  ..&.P...........
+	0x0110:  0153 0000 29ff d600 0000 0000 00         .S..)........
+```
+
+    <br />
+    <br />
+    <br />
+Thats quite a lot of info, but the top part is the request, and the bottom large part is the response.
+
+If we only look at the response, we can see that the name `blog.toerktumlare.com` and the string `tandolf.github.io` are only mentioned once in this entire message.
+
+```bash
+	0x0000:  4500 011d a258 4000 0111 d841 7f00 0035  E....X@....A...5
+	0x0010:  7f00 0001 0035 84f9 0109 ff50 997f 8180  .....5.....P....
+	0x0020:  0001 0005 0000 0005 0462 6c6f 670c 746f  .........blog.to
+	0x0030:  6572 6b74 756d 6c61 7265 0363 6f6d 0000  erktumlare.com..
+	0x0040:  0100 01c0 0c00 0500 0100 0002 1200 1307  ................
+	0x0050:  7461 6e64 6f6c 6606 6769 7468 7562 0269  tandolf.github.i
+	0x0060:  6f00 c033 0001 0001 0000 0212 0004 b9c7  o..3............
+	0x0070:  6f99 c033 0001 0001 0000 0212 0004 b9c7  o..3............
+	0x0080:  6c99 c033 0001 0001 0000 0212 0004 b9c7  l..3............
+	0x0090:  6d99 c033 0001 0001 0000 0212 0004 b9c7  m..3............
+	0x00a0:  6e99 c033 001c 0001 0000 0212 0010 2606  n..3..........&.
+	0x00b0:  50c0 8003 0000 0000 0000 0000 0153 c033  P............S.3
+	0x00c0:  001c 0001 0000 0212 0010 2606 50c0 8001  ..........&.P...
+	0x00d0:  0000 0000 0000 0000 0153 c033 001c 0001  .........S.3....
+	0x00e0:  0000 0212 0010 2606 50c0 8002 0000 0000  ......&.P.......
+	0x00f0:  0000 0000 0153 c033 001c 0001 0000 0212  .....S.3........
+	0x0100:  0010 2606 50c0 8000 0000 0000 0000 0000  ..&.P...........
+	0x0110:  0153 0000 29ff d600 0000 0000 00         .S..)........
+```
+
+But we could see in our formatted response in the console that the strings were referenced several times and this is because DNS compresses the message to avoid sending the same string multiple times in the message to keep the messages as small as possible. Pointer can usually easy be located by finding the `0xc0` value. If you see this value, its highly likely to be a pointer (you can for instance see a bunch of pointers at 0x0060-0x00a0).
+
+<WarnBox>
+`Oxc0` pointer value is not always the case, so do not trust this value to always be a pointer. We later are going to find out that a pointer is a 14-bit value, and if the top 6 bits are set to `zero`, the pointer will indeed have the first byte set as `0xc0`. But if the pointers offset value is higher than 255 then the `0xc0` rule potentially doesn't apply.
+</WarnBox>
+
+So instead of writing strings several times it instead uses a pointer to point to tokens in strings when we need to reference them. And the [rfc 1035](https://datatracker.ietf.org/doc/html/rfc1035#section-4.1.4) shows us what such a pointer looks like.
+
+## The pointer type
+
+So a pointer in a DNS message takes the form of 2 octets. Where the 2 first bits, needs to be set for us to know that we are dealing with a pointer. The value after the two set bits is an offset value, that points to a string token.
+
+```bash
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    | 1  1|                OFFSET                   |
+    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+```
+
+The above image is taken from the rfc and shows the structure of a pointer-byte.
+
+The offset, is a 14-bit number, this offset is counted from the first byte of the message. Pointers are distinguished from character values by the 2 first bits, since a character in a dns message can only take on 63 values (6 bits).
+
+So with this information we can sort of define some rules of how to read DNS data.
+
+## The rules, defining our label types!
+
+So lets say we are going to read a token from a string. A token is a part of a URL. In our earlier blogpost we saw that tokens in dns messages are prefixed by its length value and terminated with a null byte. So `blog.toerktumlare.com` is in a dns message written as `4blog12toerktumlare3com0`. So when we are reading tokens we can sort of understand that there are 3 different outcomes of bytes.
+
+- A number (declaring the length of the next token)
+- A null byte (saying that our string token has ended)
+- A pointer (telling us that the token we want is at a different location in the raw message)
+
+This knowledge can give us a chart of how to read things
+
+```mermaid
+%%{init: {'theme':'dark'}}%%
+flowchart LR
+    A{take the first byte} --> B{Are the first 2 bits set?} -- Yes --> C{take second byte \nand parse as a u16}
+    B -- No --> D{Is the entire byte set to zero?} -- Yes --> E{Parse as NullByte} 
+    D -- No --> F{Parse as a length token} 
+```
+
+
+We can start out by using enums to declare the 3 different label types we are going to end up with.
+```rust
+pub enum CtrlByte {
+    Length(u8),
+    Ptr(u16),
+    Null,
+}
+```
+If the byte is a length byte it will contain the length as an u8. If it turns out its a pointer, the enum will contain a u16 with our 14-bit pointer value. And lastly if its a null value, we don't really need to provide the value, because we know its zero already.
+
+## Parsing a length label
+Im using nom to parse values and its common in nom to start out out with small parsers and then combine them into bigger parsers. So we will start out easy by using `take` to take 1  byte and we then use `map` to map it into our enum value. The function here returns a result, containing a tuple, that has the rest of the bytes, and our parsed enum.
+
+```rust
+fn parse_length_byte(buffer: &[u8]) -> IResult<&[u8], CtrlByte> {
+    map(take(1usize), |value: &[u8]| CtrlByte::Length(value[0]))(buffer)
+}
+```
+
+This is a very typical nom pattern, and is a good start. This is our last reort in our flowchart we drew earlier, which means that we dont need any error hendling here because if we have gotten this war, we know that it must be a length number.
+
+## Parse a null label
+
+Parsing a null byte is almost as easy. We just need to check that if the next byte is of value `0x00` and if so, we `map` it into our enum. If its not, we will return an error.
+
+```rust
+fn parse_nullbyte(buffer: &[u8]) -> IResult<&[u8], CtrlByte> {
+    if buffer[0] == 0x00 {
+        map(take(1usize), |_: &[u8]| CtrlByte::Null)(buffer)
+    } else {
+        Err(make_error!(buffer, ErrorKind::Fail))
+    }
+}
+```
+
+Why we are returning an error here, is to signal that this parser failed, and nom will later use that error to understand that it should try a different parser.
+
+## Parsing a pointer label
+
+Parsing bits in nom is a little bit tricker than just parsing bytes. You basically write a function that takes in a tuple that contains the bytes wyou want to parse and a `usize` value that points to which bit you are currently parsing. If you want to read more about it [Adam Chandler](https://blog.adamchalmers.com/nom-bits) has a good blog post on how to parse bits using nom.
+
+```rust
+type BitInput<'a> = (&'a [u8], usize);
+
+// determine if this is a pointer
+fn is_ptr(input: BitInput) -> IResult<BitInput, bool> {
+    map(take(2usize), |bits: u8| bits == 0b0000_0011)(input)
+}
+
+// if it is a pointer, take the 14 additional bits and map into a u16
+pub fn parse_ptr(input: BitInput) -> IResult<BitInput, CtrlByte> {
+    let (output, is_ptr) = is_ptr(input)?;
+    if is_ptr {
+        map(take(14usize), |value: u16| CtrlByte::Ptr(value))(output)
+    } else {
+        Err(make_error!(input, ErrorKind::Fail))
+    }
+}
+```
+Im doing this in a two step process, first we need to determine if the byte is an actual pointer by checking the first two bits. And if such is the case, we in the second step take the 14 additional bits and prase these into a u16 value that we put in our enum.
+
+The type declaration at the top is just done for conveniance to avoid having to write `(&'a [u8], usize')` several times.
+
+We return a `Err` here if it isn't a pointer to trigger nom to try a different parser.
+
+
+## Combining the parsers
+Now that we have our three parsers written its time to combine them. Here we can use the nom `alt` combinator to let nom try several parsers in a row, and if one fails it will alternate and try the next one until the first one succeeds.
+```rust
+fn resolve_next(buffer: &[u8]) -> IResult<&[u8], CtrlByte> {
+    alt((bits(parse_ptr), parse_nullbyte, parse_length_byte))(buffer)
+}
+```
+In order to convert our bytes into bits, we need to wrap our parser in the `bits` function from nom. This will create a _higher order function_ that handles bits instead of bytes.
+
+Other than that this is also pretty straight forward. You provide the `alt` function with a `tuple` of functions that will get run until the first one succeeds.
+
+# Parsing the actual token based on a length label
+We need one more parser until we are done and that is the parser that will actually read the token, based on its length. So when we know the length of the next token, we just grab that amount of bytes and convert them into a `str`. In rust all `String` are utf-8 so we convert the byte into that.  
+```rust
+pub fn take_token(buffer: &[u8], length: usize) -> IResult<&[u8], &str> {
+    map(take(length), |v| str::from_utf8(v).unwrap())(buffer)
+}
+```
+
+## Lets recurse, lets recurse, lets recurse....
+
+Now that we have all our parts, we just need to combine it all into the final parser.
+
+
+```rust
+pub fn parse_names<'a>(
+    buffer: &'a [u8],
+    source: &'a [u8],
+    tokens: &mut Vec<String>,
+) -> IResult<&'a [u8], String> {
+    let mut b = buffer;
+    loop {
+
+        // Check what the next byte is of type
+        if let Ok((buffer, ctrl_byte)) = resolve_next(b) {
+            
+            // Match on the type parsed
+            match ctrl_byte {
+
+                // If length enum, parse the next token using the length value
+                // push the token onto a collection
+                CtrlByte::Length(length) => {
+                    let (buffer, token) = take_token(buffer, length as usize)?;
+                    tokens.push(token.to_owned());
+                    b = buffer;
+                }
+
+                // if ptr enum, slice the original message from the offset
+                // value, and recurse using that buffer
+                CtrlByte::Ptr(index) => {
+                    let (_, _) = parse_names(&source[index as usize..], source, tokens)?;
+                    b = buffer;
+                    break;
+                }
+
+                // if null byte enum, update the buffer, and break the loop
+                CtrlByte::Null => {
+                    b = buffer;
+                    break;
+                }
+            }
+        }
+    }
+    Ok((&b, tokens.join(".")))
+}
+```
+
+In each iteration of the loop we need to update the buffer reference `b` to ensure that the next iteration always has the latest reference.
+
+The specification does not specify if pointers can be nested, but that is the reason to why we recurse if we find a pointer. Because that pointer could in theory point to another pointer and so on.
+
+At the end we join up all the tokens using a `.` as separator.
+
+
+
+# Final Thoughts
+Compression in DNS messages is not complicated, but it was an interesting problem to solve, especially when using `nom` as the parser. I had no idea that compression existed in DNS until i read about it in the [rfc 1035](https://datatracker.ietf.org/doc/html/rfc1035). 
+
+There are several improvements that could be made, for instance here we are reparsing tokens if we hit a pointer, but if you wanted to make this more efficient one could use a `HashMap` to cache any read token, and just do lookups using the offset as the key value. Another improvement is to use a `BufReader` in rust to make reads a bit more efficient.
+
+in [rfc 6891](https://datatracker.ietf.org/doc/html/rfc6891) additional label types (bit value 0 1) was added to extend the dns protocol to be able to contain more flags. By defining the labels as enums, its very easy to just add an additional one by adding a new enum type, and a new parser. Enum types and rusts matching capabilities is very powerful to write typesafe code.
