@@ -51,6 +51,7 @@ Content > code {
 .quote {
   color: var(--font-color);
   font-size: 22px;
+  background-color: rgb(39, 39, 39);
 }
 
 .info {
@@ -61,8 +62,8 @@ Content > code {
 
 .warning {
   background-color: var(--warning-color);
-  border-color: var(--dark-warning-color);
   color: var(--font-dark-color);
+  border-color: var(--dark-warning-color);
 }
 
 .danger {
