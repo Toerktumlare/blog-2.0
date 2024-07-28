@@ -7,12 +7,23 @@ import Root from "./routes/root.tsx";
 import "./global.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {MDXProvider} from '@mdx-js/react'
+<<<<<<< HEAD
 import MdxImg from "./components/article/img/mdximg.tsx";
 import { h1 } from "./components/article/h1/h1.tsx";
 import articles from "./content/articles.tsx";
 import Mermaid from "./components/article/mermaid/Mermaid.tsx";
 
 console.log(articles);
+=======
+import MonadInJava, { frontmatter as MonadFrontmatter} from "./content/monad-in-java/index.mdx"
+import Base64InRust from "./content/base64-in-rust/index.mdx"
+import Cve2020_0601 from "./content/cve-2020-0601/index.mdx"
+import DnsCompression from "./content/dns-compression/index.mdx"
+import AnatomyDns from "./content/anatomy-of-dns/index.mdx"
+import MdxImg from "./components/article/img/mdximg.tsx";
+import { h1 } from "./components/article/h1/h1.tsx";
+import { Article } from "./components/article/article/article.tsx";
+>>>>>>> a8a6fb3 (added header to articles)
 
 if (process.env.NODE_ENV !== "production") {
   new EventSource("/esbuild").addEventListener("change", (e) => {

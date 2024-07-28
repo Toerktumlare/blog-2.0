@@ -1,0 +1,13 @@
+.content {
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
+.date {
+    margin-top: 15px;
+    color: var(--color-gray-700);
+}
+
+.tags {
+    margin-top: 10px;
+}
