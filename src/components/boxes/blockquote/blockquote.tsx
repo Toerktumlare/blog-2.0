@@ -1,6 +1,6 @@
 import React, { type ReactNode } from "react"
 import { FaQuoteLeft } from "react-icons/fa";
-import { AttentionBox, BoxType, Content, Footer, Header } from "../AttentionBox";
+import { AttentionBox, BoxType, Content, Footer, Header } from "../AttentionBox.js";
 
 export default function Blockquote({ children, source }: QuoteProps) {
   return (

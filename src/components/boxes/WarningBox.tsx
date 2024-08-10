@@ -1,6 +1,6 @@
 import React, { type ReactNode } from "react"
 import { AiOutlineWarning } from "react-icons/ai";
-import { AttentionBox, BoxType, Content, Header, Icon } from "./AttentionBox"
+import { AttentionBox, BoxType, Content, Header, Icon } from "./AttentionBox.js"
 
 const WarningBox = ({ children }: WarningProps) => {
   return (

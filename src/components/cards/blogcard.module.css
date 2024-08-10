@@ -20,5 +20,8 @@
 .container .date {
   color: var(--color-gray-700);
   font-size: 14px;
+}
 
+.none {
+  list-style: none
 }

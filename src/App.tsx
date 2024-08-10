@@ -7,13 +7,12 @@ import Root from "./routes/root.tsx";
 import "./global.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {MDXProvider} from '@mdx-js/react'
-import MonadInJava from "./content/monad-in-java/index.mdx"
-import Base64InRust from "./content/base64-in-rust/index.mdx"
-import Cve2020_0601 from "./content/cve-2020-0601/index.mdx"
-import DnsCompression from "./content/dns-compression/index.mdx"
-import AnatomyDns from "./content/anatomy-of-dns/index.mdx"
 import MdxImg from "./components/article/img/mdximg.tsx";
 import { h1 } from "./components/article/h1/h1.tsx";
+import articles from "./content/articles.tsx";
+import Mermaid from "./components/article/mermaid/Mermaid.tsx";
+
+console.log(articles);
 
 if (process.env.NODE_ENV !== "production") {
   new EventSource("/esbuild").addEventListener("change", (e) => {
@@ -41,6 +40,13 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
+const routes = articles.map(article => {
+  return {
+    path: article.path,
+    element: article.content,
+  }
+});
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,26 +60,7 @@ const router = createBrowserRouter([
         path: "/about",
         element: <About />,
       },
-      {
-        path: "/monad-in-java",
-        element: <MonadInJava />,
-      },
-      {
-        path: "/base64-in-rust",
-        element: <Base64InRust />,
-      },
-      {
-        path: "/cve-2020-0601",
-        element: <Cve2020_0601 />,
-      },
-      {
-        path: "/dns-compression",
-        element: <DnsCompression />,
-      },
-      {
-        path: "/anatomy-of-dns",
-        element: <AnatomyDns />,
-      },
+      ...routes
     ],
   },
   {
@@ -81,6 +68,7 @@ const router = createBrowserRouter([
     element: <Styleguide />,
   },
 ]);
+
 
 const component = {
   h1: h1,
@@ -110,10 +98,16 @@ const component = {
         backgroundColor: "rgb(40, 42, 54)",
       }}
     >
-      {" "}
-      {props.children}
+    {""}
+    {props.children}
     </pre>
   ),
+  li: (props: any) => (
+    <li style={{  }} {...props}>
+      {props.children}
+    </li>
+  ),
+  Mermaid
 };
 
 const App = () => {

@@ -28,8 +28,8 @@
 - [x] change hovering to be only on text for the menu
 - [ ] load css earlier so it does not show the previous styles first
 - [x] fix padding on sides global (remove from main)
-- [ ] style wrapper component for code (border style)
-- [ ] remove padding top from boxes
+- [x] style wrapper component for code (border style)
+- [x] remove padding top from boxes
 - [ ] fix list styling in mdx files
 - [ ] implement side by side image component
 - [ ] remove whitespace starting in code blocks

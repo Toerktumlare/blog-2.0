@@ -59,7 +59,14 @@ listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144
 	0x0030:  6572 6b74 756d 6c61 7265 0363 6f6d 0000  erktumlare.com..
 	0x0040:  0100 0100 0029 04d0 0000 0000 000c 000a  .....)..........
 	0x0050:  0008 450e f971 0825 46f3                 ..E..q.%F.
-14:53:18.781770 lo    In  IP localhost.domain > localhost.34041: 39295 5/0/5 CNAME tandolf.github.io., A 185.199.111.153, A 185.199.108.153, A 185.199.109.153, A 185.199.110.153 (257)
+
+14:53:18.781770 lo    In  IP localhost.domain > localhost.34041: 39295 5/0/5 
+    CNAME tandolf.github.io., 
+        A 185.199.111.153, 
+        A 185.199.108.153, 
+        A 185.199.109.153, 
+        A 185.199.110.153 
+    (257)
 	0x0000:  4500 011d a258 4000 0111 d841 7f00 0035  E....X@....A...5
 	0x0010:  7f00 0001 0035 84f9 0109 ff50 997f 8180  .....5.....P....
 	0x0020:  0001 0005 0000 0005 0462 6c6f 670c 746f  .........blog.to
@@ -88,24 +95,24 @@ Thats quite a lot of info, but the top part is the request, and the bottom large
 If we only look at the response, we can see that the name `blog.toerktumlare.com` and the string `tandolf.github.io` are only mentioned once in this entire message.
 
 ```bash
-	0x0000:  4500 011d a258 4000 0111 d841 7f00 0035  E....X@....A...5
-	0x0010:  7f00 0001 0035 84f9 0109 ff50 997f 8180  .....5.....P....
-	0x0020:  0001 0005 0000 0005 0462 6c6f 670c 746f  .........blog.to
-	0x0030:  6572 6b74 756d 6c61 7265 0363 6f6d 0000  erktumlare.com..
-	0x0040:  0100 01c0 0c00 0500 0100 0002 1200 1307  ................
-	0x0050:  7461 6e64 6f6c 6606 6769 7468 7562 0269  tandolf.github.i
-	0x0060:  6f00 c033 0001 0001 0000 0212 0004 b9c7  o..3............
-	0x0070:  6f99 c033 0001 0001 0000 0212 0004 b9c7  o..3............
-	0x0080:  6c99 c033 0001 0001 0000 0212 0004 b9c7  l..3............
-	0x0090:  6d99 c033 0001 0001 0000 0212 0004 b9c7  m..3............
-	0x00a0:  6e99 c033 001c 0001 0000 0212 0010 2606  n..3..........&.
-	0x00b0:  50c0 8003 0000 0000 0000 0000 0153 c033  P............S.3
-	0x00c0:  001c 0001 0000 0212 0010 2606 50c0 8001  ..........&.P...
-	0x00d0:  0000 0000 0000 0000 0153 c033 001c 0001  .........S.3....
-	0x00e0:  0000 0212 0010 2606 50c0 8002 0000 0000  ......&.P.......
-	0x00f0:  0000 0000 0153 c033 001c 0001 0000 0212  .....S.3........
-	0x0100:  0010 2606 50c0 8000 0000 0000 0000 0000  ..&.P...........
-	0x0110:  0153 0000 29ff d600 0000 0000 00         .S..)........
+0x0000:  4500 011d a258 4000 0111 d841 7f00 0035  E....X@....A...5
+0x0010:  7f00 0001 0035 84f9 0109 ff50 997f 8180  .....5.....P....
+0x0020:  0001 0005 0000 0005 0462 6c6f 670c 746f  .........blog.to
+0x0030:  6572 6b74 756d 6c61 7265 0363 6f6d 0000  erktumlare.com..
+0x0040:  0100 01c0 0c00 0500 0100 0002 1200 1307  ................
+0x0050:  7461 6e64 6f6c 6606 6769 7468 7562 0269  tandolf.github.i
+0x0060:  6f00 c033 0001 0001 0000 0212 0004 b9c7  o..3............
+0x0070:  6f99 c033 0001 0001 0000 0212 0004 b9c7  o..3............
+0x0080:  6c99 c033 0001 0001 0000 0212 0004 b9c7  l..3............
+0x0090:  6d99 c033 0001 0001 0000 0212 0004 b9c7  m..3............
+0x00a0:  6e99 c033 001c 0001 0000 0212 0010 2606  n..3..........&.
+0x00b0:  50c0 8003 0000 0000 0000 0000 0153 c033  P............S.3
+0x00c0:  001c 0001 0000 0212 0010 2606 50c0 8001  ..........&.P...
+0x00d0:  0000 0000 0000 0000 0153 c033 001c 0001  .........S.3....
+0x00e0:  0000 0212 0010 2606 50c0 8002 0000 0000  ......&.P.......
+0x00f0:  0000 0000 0153 c033 001c 0001 0000 0212  .....S.3........
+0x0100:  0010 2606 50c0 8000 0000 0000 0000 0000  ..&.P...........
+0x0110:  0153 0000 29ff d600 0000 0000 00         .S..)........
 ```
 
 But we could see in our formatted response in the console that the strings were referenced several times and this is because DNS compresses the message to avoid sending the same string multiple times in the message to keep the messages as small as possible. Pointer can usually easy be located by finding the `0xc0` value. If you see this value, its highly likely to be a pointer (you can for instance see a bunch of pointers at 0x0060-0x00a0).
@@ -120,10 +127,10 @@ So instead of writing strings several times it instead uses a pointer to point t
 
 So a pointer in a DNS message takes the form of 2 octets. Where the 2 first bits, needs to be set for us to know that we are dealing with a pointer. The value after the two set bits is an offset value, that points to a string token.
 
-```bash
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-    | 1  1|                OFFSET                   |
-    +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+```
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+| 1  1|                OFFSET                   |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
 ```
 
 The above image is taken from the rfc and shows the structure of a pointer-byte.
@@ -142,13 +149,18 @@ So lets say we are going to read a token from a string. A token is a part of a U
 
 This knowledge can give us a chart of how to read things
 
-```mermaid
-%%{init: {'theme':'dark'}}%%
+<Mermaid>
+{/* {`%%{init: {'theme':'dark'}}%%
 flowchart LR
     A{take the first byte} --> B{Are the first 2 bits set?} -- Yes --> C{take second byte \nand parse as a u16}
     B -- No --> D{Is the entire byte set to zero?} -- Yes --> E{Parse as NullByte} 
-    D -- No --> F{Parse as a length token} 
-```
+    D -- No --> F{Parse as a length token}`} */}
+  {`graph LR
+    A[Start] --> B{Is it?}
+    B -->|Yes| C[OK]
+    B -->|No| D[Not OK]
+  `}
+</Mermaid>
 
 
 We can start out by using enums to declare the 3 different label types we are going to end up with.

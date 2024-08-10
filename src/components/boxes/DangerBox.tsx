@@ -1,6 +1,6 @@
 import React, { type ReactNode } from "react"
 import { BiErrorAlt } from "react-icons/bi";
-import { AttentionBox, BoxType, Content, Header, Icon } from "./AttentionBox"
+import { AttentionBox, BoxType, Content, Header, Icon } from "./AttentionBox.js"
 
 export default function DangerBox({ children }: DangerProps) {
   return (

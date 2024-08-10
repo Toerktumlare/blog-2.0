@@ -1,0 +1,20 @@
+
+// ============ THIS FILE IS GENERATED DO NOT EDIT ============
+import React from "react";
+import { Article } from "./types";
+{{#articles}}
+import { frontmatter as {{frontmatter}} } from '{{{index_path}}}'
+import {{content}} from '{{{index_path}}}';
+{{/articles}}
+
+const articles: Article[] = [
+{{#articles}}
+  {
+    path: "{{ folder_name }}",
+    content: <{{ content }} />,
+    metadata: {{ frontmatter }}
+  },
+{{/articles}}
+]
+
+export default articles;

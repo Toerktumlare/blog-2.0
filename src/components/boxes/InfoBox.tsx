@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react"
 import { AiOutlineInfoCircle } from "react-icons/ai"
-import { AttentionBox, BoxType, Content, Header, Icon } from "./AttentionBox"
+import { AttentionBox, BoxType, Content, Header, Icon } from "./AttentionBox.js"
 
 const InfoBox = ({ children }: InfoProps) => {
   const backgroundColor = 'var(--info-color)';

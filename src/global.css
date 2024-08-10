@@ -96,6 +96,10 @@ body {
   margin: 0px;
 }
 
+ol {
+  list-style: none;
+}
+
 ul {
   padding: 0px 0px 0px 0px;
   margin-top: 0px;
@@ -106,9 +110,9 @@ ul {
   font-size: 20px;
 }
 
-ul li:before { 
+/* ul li:before { 
   content:"- ";
-}
+} */
 
 a:link {
   color: var(--primary-color);

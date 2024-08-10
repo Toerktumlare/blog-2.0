@@ -1,14 +1,18 @@
 import React from "react";
 import City from "../images/city.jpg";
 import "../global.css";
-import styles from "./about.module.css"
-import StackOverflow from "../components/stackOverflow/StackOverflow";
+import styles from "./about.module.css";
+import StackOverflow from "../components/stackOverflow/StackOverflow.tsx";
 
 export default function About() {
   return (
     <div className={`${styles.row} pt75 pb50`}>
       <div className={styles.image}>
-        <img src={City} alt="Logo" className={`${ styles.rounded_corners} flex1`} />
+        <img
+          src={City}
+          alt="Logo"
+          className={`${styles.rounded_corners} flex1`}
+        />
       </div>
       <div className={`${styles.column} flex1`}>
         <p>Coder by day, coder by night.</p>

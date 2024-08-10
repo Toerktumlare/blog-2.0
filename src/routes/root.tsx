@@ -1,43 +1,35 @@
 import React from "react";
-import BlogCard from "../components/cards/blogcard";
-import { Tags } from "../utils/tags";
+import BlogCard from "../components/cards/blogcard.tsx";
+import { Tags } from "../utils/tags.ts";
 import "../global.css";
-import ListWrapper, { Spacing } from "../components/listWrapper/listwrapper";
+import ListWrapper, {
+  Spacing,
+} from "../components/listWrapper/listwrapper.tsx";
 import styles from "./root.module.css";
-import { frontmatter as monad } from "./../content/monad-in-java/index.mdx";
-import { frontmatter as base64 } from "./../content/base64-in-rust/index.mdx";
-import { frontmatter as cve } from "./../content/cve-2020-0601/index.mdx";
-import { frontmatter as dnsAnatomy } from "./../content/anatomy-of-dns/index.mdx";
-import { frontmatter as dnsCompression } from "./../content/dns-compression/index.mdx";
-
-interface Frontmatter {
-  title: string,
-  path: string,
-  date: string,
-  description: string,
-  tags: [Tags]
-}
-
+import articles from "../content/articles.tsx";
+import { Metadata } from "../content/types.tsx";
 
 export default function Root() {
-  const list: Frontmatter[] = [
-    monad, base64, cve, dnsAnatomy, dnsCompression
-  ];
+  const list = articles.map((article) => {
+    return article.metadata;
+  });
 
-  list.sort((a: Frontmatter, b: Frontmatter) => {
+  list.sort((a: Metadata, b: Metadata) => {
     return Math.abs(new Date(a.date).getTime() - new Date(b.date).getTime());
-  })
+  });
 
   const blogList = list.map((f) => {
-    return (<BlogCard
-      header={f.title}
-      path={f.path}
-      date={new Date(f.date)}
-      body={f.description}
-      tags={[Tags.Java, Tags.Rust]}
-      className="pb50"
-    />)
-  })
+    return (
+      <BlogCard
+        header={f.title}
+        path={f.path}
+        date={new Date(f.date)}
+        body={f.description}
+        tags={[Tags.Java, Tags.Rust]}
+        className="pb50"
+      />
+    );
+  });
 
   return (
     <main className={styles.container}>

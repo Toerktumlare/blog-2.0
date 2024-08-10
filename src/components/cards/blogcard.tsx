@@ -1,13 +1,13 @@
 import React from "react";
-import { Tags } from "../../utils/tags";
+import { Tags } from "../../utils/tags.ts";
 import styles from "./blogcard.module.css";
 import "../../global.css";
-import Tag from "../tag/tag";
+import Tag from "../tag/tag.tsx";
 import { Link } from "react-router-dom";
 
 function BlogCard({ header, date, body, tags, className, path }: BlogCardProps) {
   const tagList = (
-    <ul>
+    <ul className={styles.none}>
       {tags.map((tagText, i) => (
         <li key={i}>
           <Tag text={tagText} />

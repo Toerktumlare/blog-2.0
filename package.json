@@ -5,26 +5,34 @@
   "main": "src/index.jsx",
   "author": "Thomas Andolf",
   "license": "ISC",
+  "type": "module",
   "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@mdx-js/esbuild": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@types/mdx": "^2.0.13",
+    "@types/mustache": "^4.2.5",
     "@types/node": "^20.14.6",
     "@types/react": "^18.3.3",
     "@types/react-syntax-highlighter": "^15.5.13",
     "@types/remark-prism": "1.3.7",
+    "@types/uuid": "^10.0.0",
     "esbuild": "0.20.2",
+    "frontmatter": "^0.0.3",
     "gray-matter": "^4.0.3",
+    "mermaid": "^10.9.1",
+    "mustache": "^4.2.0",
     "prettier": "3.3.2",
     "prismjs": "1.29.0",
     "react-syntax-highlighter": "^15.5.0",
     "remark-frontmatter": "^5.0.0",
     "remark-images": "^4.0.0",
     "remark-mdx-frontmatter": "^5.0.0",
-    "typescript": "5.4.5",
-    "mermaid": "^10.9.1"
+    "ts-node": "^10.9.2",
+    "typescript": "5.4.5"
   },
   "dependencies": {
+    "@theguild/remark-mermaid": "^0.0.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
@@ -33,6 +41,6 @@
   },
   "scripts": {
     "build": "node build.mjs",
-    "start": "node start.mjs"
+    "start": "node --loader ts-node/esm start.mts"
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./listwrapper.module.css"
+// import styles from "./listwrapper.module.css"
 
 export default function ListWrapper({ items, className, spacing }: ListWrapperProps) {
   let spacingClass: string;
