@@ -41,6 +41,6 @@
   },
   "scripts": {
     "build": "node build.mjs",
-    "start": "node --loader ts-node/esm start.mts"
+    "start": "node --import ./register-hooks.js start.mts"
   }
 }

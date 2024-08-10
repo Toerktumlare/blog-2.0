@@ -42,10 +42,10 @@ function BlogCard({ header, date, body, tags, className, path }: BlogCardProps) 
 
 interface BlogCardProps {
   header: string;
-  path?: string,
+  path: string,
   date: Date;
   body: string;
-  tags: Tags[];
+  tags: string[];
   className?: string
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Tag from "../../tag/tag";
+import Tag from "../../tag/tag.tsx";
 import styles from "./articleHeader.module.css"
 
 type HeaderProps = {

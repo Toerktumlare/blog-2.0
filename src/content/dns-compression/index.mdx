@@ -1,9 +1,11 @@
 ---
 title: Compression in DNS messages
-path: "/dns-compression"
 date: "2023-12-11T14:13:00.000Z"
 description: "When writing my DNS client \"Who are you?\" i had no idea that there was compression built into DNS messages. This blog post will explain how compression in DNS messages work and how i went about solving it."
-tags: rust, dns, networking
+tags: 
+    - rust 
+    - dns 
+    - networking
 ---
 
 import WarnBox from "../../../src/components/boxes/WarningBox";
@@ -150,16 +152,11 @@ So lets say we are going to read a token from a string. A token is a part of a U
 This knowledge can give us a chart of how to read things
 
 <Mermaid>
-{/* {`%%{init: {'theme':'dark'}}%%
+{`%%{init: {'theme':'dark'}}%%
 flowchart LR
     A{take the first byte} --> B{Are the first 2 bits set?} -- Yes --> C{take second byte \nand parse as a u16}
     B -- No --> D{Is the entire byte set to zero?} -- Yes --> E{Parse as NullByte} 
-    D -- No --> F{Parse as a length token}`} */}
-  {`graph LR
-    A[Start] --> B{Is it?}
-    B -->|Yes| C[OK]
-    B -->|No| D[Not OK]
-  `}
+    D -- No --> F{Parse as a length token}`}
 </Mermaid>
 
 

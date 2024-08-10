@@ -28,6 +28,36 @@ fs.copyFile("public/index.html", "dist/index.html", (err: any) => {
 
 packArticlesPlugin('./build');
 
+const ensureDirectoryExists = (filePath: string) => {
+  const dir = path.dirname(filePath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+};
+
+const removeFirstDirectory = (filePath: string) => {
+
+  if (filePath.startsWith("/")) {
+    filePath = filePath.slice(1);
+  }
+
+  // Normalize the path to ensure consistent formatting
+  const normalizedPath = path.normalize(filePath);
+
+  // Split the path into its components
+  const parts = normalizedPath.split(path.sep);
+
+  // Check if there are enough parts to remove the first directory
+  if (parts.length < 1) {
+    return filePath;
+  }
+
+  // Remove the first directory and reassemble the path
+  const newPath = path.join(...parts.slice(1));
+
+  return newPath;
+};
+
 function copyAssetsPlugin({ sourceDir, outputDir }: any) {
   return {
     name: 'copy-assets',
@@ -41,8 +71,10 @@ function copyAssetsPlugin({ sourceDir, outputDir }: any) {
           const items = fs.readdirSync(srcDir);
 
           items.forEach((item: any) => {
+            const relativDest = srcDir.replace(sourceDir, "");
+
             const srcPath = path.join(srcDir, item);
-            const destPath = path.join(outputDir, item);
+            const destPath = path.join(outputDir, removeFirstDirectory(relativDest), item);
             const stat = fs.statSync(srcPath);
 
             if (stat.isDirectory()) {
@@ -50,6 +82,8 @@ function copyAssetsPlugin({ sourceDir, outputDir }: any) {
             } else {
               const ext = path.extname(item).toLowerCase();
               if (['.png', '.jpg', '.jpeg', '.gif', '.svg'].includes(ext)) {
+                ensureDirectoryExists(destPath)
+
                 fs.copyFileSync(srcPath, destPath);
               }
             }
@@ -67,13 +101,6 @@ function copyAssetsPlugin({ sourceDir, outputDir }: any) {
     }
   };
 }
-
-const getFolderNamesInDirectory = (dir: string) => {
-  return fs.readdirSync(dir).filter((item: any) => {
-    const itemPath = path.join(dir, item);
-    return fs.statSync(itemPath).isDirectory();
-  });
-};
 
 function packArticlesPlugin(buildDir: string) {
   const cacheFilePath = path.join(buildDir, '.cache');
@@ -114,7 +141,7 @@ function packArticlesPlugin(buildDir: string) {
       fs.writeFileSync(cacheFilePath, newHash);
     } else {
       // If the hash is the same, exit the plugin early
-      console.log('Hash in .cache file is the same. Exiting plugin.');
+      console.log('Hash in .cache file is the same. No need to generate new file. Exiting plugin.');
       // return;
     }
 

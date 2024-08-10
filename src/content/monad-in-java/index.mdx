@@ -1,27 +1,26 @@
 ---
 title: Write a Monad in java, seriously?
-path: "/monad-in-java"
 date: "2019-05-28T22:12:03.284Z"
 description: "In this post i’m going to try to explain what a monad is, and then we are going to implement a simple Try/Catch Monad in Java."
 tags: 
-- java
-- monads
-- programming
+    - java
+    - monads
+    - programming
 ---
 import Blockquote from "../../../src/components/boxes/blockquote/blockquote.tsx";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import WarningBox from "../../../src/components/boxes/WarningBox.tsx";
 
-# Monad? What the h…ll is he talking about?
+Monad? What the h…ll is he talking about?
 <br />
 In this post i’m going to try to explain what a monad is, and then we are going to implement a simple Try/Catch Monad in Java.
 <br />
 <WarningBox>
-Disclaimer, this is written for beginners that have a hard time understanding what a Monad is. It is not written for experienced functional programmers, and I will avoid any of the philosophical arguments that “real” Monads don’t exist in Java because how Java handles “null” wrongly.
+Disclaimer, this is written for beginners that have a hard time understanding what a Monad is. It is not written for experienced functional programmers, and I will avoid any of the philosophical arguments that “real” Monads don’t exist in Java because of how Java handles “null” wrongly.
 </WarningBox>
 <br />
-This is is for beginners, and is written for beginners.
+This is written for beginners, and intermediate java developers.
 <br />
 ![elephant](./monad.png)
 <br />
@@ -97,7 +96,7 @@ try {
 } catch(NumberFormatException e){
     value = 10;
 }
-<br />
+
 //Maybe our new way?
 int value = Try.ofThrowable(() -> Integer.valueOf("10"))
                 .orElse(10)

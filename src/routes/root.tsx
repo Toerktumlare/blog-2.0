@@ -7,25 +7,22 @@ import ListWrapper, {
 } from "../components/listWrapper/listwrapper.tsx";
 import styles from "./root.module.css";
 import articles from "../content/articles.tsx";
-import { Metadata } from "../content/types.tsx";
+import { Article, Metadata } from "../content/types.tsx";
 
 export default function Root() {
-  const list = articles.map((article) => {
-    return article.metadata;
+
+  articles.sort((a: Article, b: Article) => {
+    return Math.abs(new Date(a.metadata.date).getTime() - new Date(b.metadata.date).getTime());
   });
 
-  list.sort((a: Metadata, b: Metadata) => {
-    return Math.abs(new Date(a.date).getTime() - new Date(b.date).getTime());
-  });
-
-  const blogList = list.map((f) => {
+  const blogList = articles.map((f) => {
     return (
       <BlogCard
-        header={f.title}
+        header={f.metadata.title}
         path={f.path}
-        date={new Date(f.date)}
-        body={f.description}
-        tags={[Tags.Java, Tags.Rust]}
+        date={new Date(f.metadata.date)}
+        body={f.metadata.description}
+        tags={f.metadata.tags}
         className="pb50"
       />
     );
