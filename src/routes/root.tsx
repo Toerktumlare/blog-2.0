@@ -1,18 +1,18 @@
 import React from "react";
 import BlogCard from "../components/cards/blogcard.tsx";
-import { Tags } from "../utils/tags.ts";
-import "../global.css";
 import ListWrapper, {
   Spacing,
 } from "../components/listWrapper/listwrapper.tsx";
-import styles from "./root.module.css";
 import articles from "../content/articles.tsx";
-import { Article, Metadata } from "../content/types.tsx";
+import { Article } from "../content/types.tsx";
+import "../global.css";
+import styles from "./root.module.css";
 
 export default function Root() {
-
   articles.sort((a: Article, b: Article) => {
-    return Math.abs(new Date(a.metadata.date).getTime() - new Date(b.metadata.date).getTime());
+    return (
+      new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
+    );
   });
 
   const blogList = articles.map((f) => {

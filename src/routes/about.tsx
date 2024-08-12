@@ -1,8 +1,8 @@
 import React from "react";
-import City from "../images/city.jpg";
-import "../global.css";
-import styles from "./about.module.css";
 import StackOverflow from "../components/stackOverflow/StackOverflow.tsx";
+import "../global.css";
+import City from "../images/city.jpg";
+import styles from "./about.module.css";
 
 export default function About() {
   return (

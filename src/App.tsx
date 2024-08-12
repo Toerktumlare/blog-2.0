@@ -1,18 +1,22 @@
-import React, { useEffect } from "react";
+import { MDXProvider } from "@mdx-js/react";
+import React from "react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  ScrollRestoration,
+} from "react-router-dom";
+import { Article } from "./components/article/article/article.tsx";
+import { h1 } from "./components/article/h1/h1.tsx";
+import MdxImg from "./components/article/img/mdximg.tsx";
+import Mermaid from "./components/article/mermaid/Mermaid.tsx";
 import LayoutWrapper from "./components/layout/layoutWrapper.tsx";
 import Main from "./components/main/main.tsx";
-import Styleguide from "./routes/styleguide.tsx";
+import Script from "./components/script/script.tsx";
+import articles from "./content/articles.tsx";
+import "./global.css";
 import About from "./routes/about.tsx";
 import Root from "./routes/root.tsx";
-import "./global.css";
-import { createBrowserRouter, RouterProvider, ScrollRestoration, useLocation } from "react-router-dom";
-import {MDXProvider} from '@mdx-js/react'
-import MdxImg from "./components/article/img/mdximg.tsx";
-import { h1 } from "./components/article/h1/h1.tsx";
-import articles from "./content/articles.tsx";
-import Mermaid from "./components/article/mermaid/Mermaid.tsx";
-import { Article } from "./components/article/article/article.tsx";
-import Script from "./components/script/script.tsx";
+import Styleguide from "./routes/styleguide.tsx";
 
 console.log(articles);
 
@@ -42,11 +46,16 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-const routes = articles.map(article => {
+const routes = articles.map((article) => {
   return {
     path: article.path,
-    element: <><ScrollRestoration /><Article frontmatter={article.metadata}>{article.content}</Article></>
-  }
+    element: (
+      <>
+        <ScrollRestoration />
+        <Article frontmatter={article.metadata}>{article.content}</Article>
+      </>
+    ),
+  };
 });
 
 const router = createBrowserRouter([
@@ -62,7 +71,7 @@ const router = createBrowserRouter([
         path: "/about",
         element: <About />,
       },
-      ...routes
+      ...routes,
     ],
   },
   {
@@ -70,7 +79,6 @@ const router = createBrowserRouter([
     element: <Styleguide />,
   },
 ]);
-
 
 const component = {
   h1: h1,
@@ -100,17 +108,17 @@ const component = {
         backgroundColor: "rgb(40, 42, 54)",
       }}
     >
-    {""}
-    {props.children}
+      {""}
+      {props.children}
     </pre>
   ),
   li: (props: any) => (
-    <li style={{  }} {...props}>
+    <li style={{}} {...props}>
       {props.children}
     </li>
   ),
   Mermaid,
-  Script
+  Script,
 };
 
 const App = () => {
@@ -122,6 +130,5 @@ const App = () => {
     </MDXProvider>
   );
 };
-
 
 export default App;

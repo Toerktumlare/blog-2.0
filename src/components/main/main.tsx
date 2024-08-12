@@ -1,9 +1,8 @@
 import * as React from "react";
-import globals from "./main.module.css";
-import styles from "./main.module.css";
-import Header from "../header/header";
 import { Outlet } from "react-router-dom";
-import Footer from "../footer/footer";
+import Footer from "../footer/footer.tsx";
+import Header from "../header/header.tsx";
+import styles from "./main.module.css";
 
 export default function Main({ children }: MainProps) {
   return (

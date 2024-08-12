@@ -1,15 +1,15 @@
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 
 export type Metadata = {
-  title: string
-  path: string,
-  description: string,
-  tags: string[],
-  date: string,
-}
+  title: string;
+  path: string;
+  description: string;
+  tags: string[];
+  date: string;
+};
 
 export type Article = {
-  path: string,
-  content: ReactNode,
-  metadata: Metadata,
-} 
+  path: string;
+  content: ReactNode;
+  metadata: Metadata;
+};

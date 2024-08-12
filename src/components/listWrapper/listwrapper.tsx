@@ -1,7 +1,11 @@
 import React from "react";
 // import styles from "./listwrapper.module.css"
 
-export default function ListWrapper({ items, className, spacing }: ListWrapperProps) {
+export default function ListWrapper({
+  items,
+  className,
+  spacing,
+}: ListWrapperProps) {
   let spacingClass: string;
   switch (spacing) {
     case Spacing.Small:
@@ -11,9 +15,9 @@ export default function ListWrapper({ items, className, spacing }: ListWrapperPr
       spacingClass = ".pb30";
       break;
     default:
-      spacingClass = ".pb60"
+      spacingClass = ".pb60";
       break;
-  } 
+  }
   const listItems = items.map((value, i) => <li key={i}>{value}</li>);
   return (
     <div className={className}>
@@ -25,9 +29,11 @@ export default function ListWrapper({ items, className, spacing }: ListWrapperPr
 interface ListWrapperProps {
   className?: string;
   items: React.ReactElement[];
-  spacing: Spacing
+  spacing: Spacing;
 }
 
 export enum Spacing {
-  Small, Medium, Large
+  Small,
+  Medium,
+  Large,
 }

@@ -1,15 +1,13 @@
 import React from "react";
-import "../../global.css"
-import styles from "./menu.module.css";
 import { Link } from "react-router-dom";
+import "../../global.css";
+import styles from "./menu.module.css";
 
 const Menu = () => {
   return (
     <nav className={styles.menu}>
       <div className={styles.logo}>
-        <Link to={`/`}>
-          /home/toerktumlare/
-        </Link>
+        <Link to={`/`}>/home/toerktumlare/</Link>
       </div>
       <div>
         <ul>

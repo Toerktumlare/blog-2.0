@@ -24,6 +24,17 @@
 - [ ] padding in quote block (bottom)
 - [ ] fix list styling in mdx files
 - [ ] set unicorn icon in tab
+- [ ] fix code examples in dns message breakdown
+- [x] fix sorting of articles on first page
+- [ ] implement side by side image component
+- [ ] add publish boolean in frontmatter
+- [ ] clean up and rename root file
+- [ ] clean up and rename app file
+- [ ] setup build job on github actions
+- [ ] make buildscript take in params to build production or development
+- [ ] setup build job to deploh to github pages
+- [ ] create skeleton component when images are loading
+- [ ] verify that tags selected are tags that exist
 - [x] fix styling of mermaid so that it doesnt look like crap
 - [x] implement react router
 - [x] loading frontmatter
@@ -36,16 +47,8 @@
 - [x] fix padding on sides global (remove from main)
 - [x] style wrapper component for code (border style)
 - [x] remove padding top from boxes
-- [ ] implement side by side image component
 - [x] remove whitespace starting in code blocks
 - [x] remove padding top from code components
 - [x] create top header in mdx files
 - [x] write function that creates tags
 - [x] generate path names during compile time from folder names
-- [ ] add publish boolean in frontmatter
-- [ ] clean up and rename root file
-- [ ] clean up and rename app file
-- [ ] setup build job on github actions
-- [ ] make buildscript take in params to build production or development
-- [ ] setup build job to deploh to github pages
-- [ ] create skeleton component when images are loading

@@ -7,11 +7,7 @@ interface ScriptLoaderProps {
   onLoad?: () => void;
 }
 
-const Script: React.FC<ScriptLoaderProps> = ({
-  src,
-  async = true,
-  onLoad,
-}) => {
+const Script: React.FC<ScriptLoaderProps> = ({ src, async = true, onLoad }) => {
   useEffect(() => {
     // Create a script element
     const script = document.createElement("script");

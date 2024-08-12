@@ -7,9 +7,9 @@ export default function Tag({ text }: TagProps) {
     <div className={styles.container}>
       <p>#{text}</p>
     </div>
-  )
+  );
 }
 
 interface TagProps {
-  text: string
+  text: string;
 }

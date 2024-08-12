@@ -1,10 +1,10 @@
 import React from "react";
+import DangerBox from "../components/boxes/DangerBox.tsx";
+import InfoBox from "../components/boxes/InfoBox.tsx";
+import WarningBox from "../components/boxes/WarningBox.tsx";
+import Blockquote from "../components/boxes/blockquote/blockquote.tsx";
 import BlogCard from "../components/cards/blogcard.tsx";
 import { Tags } from "../utils/tags.ts";
-import WarningBox from "../components/boxes/WarningBox.tsx";
-import InfoBox from "../components/boxes/InfoBox.tsx";
-import Blockquote from "../components/boxes/blockquote/blockquote.tsx";
-import DangerBox from "../components/boxes/DangerBox.tsx";
 
 function Styleguide() {
   return (

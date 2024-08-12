@@ -1,11 +1,17 @@
 import React from "react";
-import { Tags } from "../../utils/tags.ts";
-import styles from "./blogcard.module.css";
+import { Link } from "react-router-dom";
 import "../../global.css";
 import Tag from "../tag/tag.tsx";
-import { Link } from "react-router-dom";
+import styles from "./blogcard.module.css";
 
-function BlogCard({ header, date, body, tags, className, path }: BlogCardProps) {
+function BlogCard({
+  header,
+  date,
+  body,
+  tags,
+  className,
+  path,
+}: BlogCardProps) {
   const tagList = (
     <ul className={styles.none}>
       {tags.map((tagText, i) => (
@@ -25,7 +31,9 @@ function BlogCard({ header, date, body, tags, className, path }: BlogCardProps) 
   return (
     <article className={`${className} ${styles.container}`}>
       <header className="pb20">
-        <h3><Link to={path}>{header}</Link></h3>
+        <h3>
+          <Link to={path}>{header}</Link>
+        </h3>
       </header>
       <section className="pb20">
         <p className={styles.date}>{d}</p>
@@ -33,20 +41,18 @@ function BlogCard({ header, date, body, tags, className, path }: BlogCardProps) 
       <section className="pb20">
         <p>{body}</p>
       </section>
-      <footer>
-        {tagList}
-      </footer>
+      <footer>{tagList}</footer>
     </article>
   );
 }
 
 interface BlogCardProps {
   header: string;
-  path: string,
+  path: string;
   date: Date;
   body: string;
   tags: string[];
-  className?: string
+  className?: string;
 }
 
 export default BlogCard;
