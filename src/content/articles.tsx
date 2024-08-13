@@ -2,42 +2,42 @@
 // ============ THIS FILE IS GENERATED DO NOT EDIT ============
 import React from "react";
 import { Article } from "./types";
-import { frontmatter as DuEiDqscCjgrydEDvcQmLhgW } from './anatomy-of-dns/index.mdx'
-import MeXZBxIQKuJHhdfvnfTBgOXd from './anatomy-of-dns/index.mdx';
-import { frontmatter as JoSYvJVlZZDptZmmFSElLmkl } from './base64-in-rust/index.mdx'
-import HtbxHsVOLDLVQaDEtufWJvWM from './base64-in-rust/index.mdx';
-import { frontmatter as BCfIQFNmAEZqHhZdZiqANJZC } from './cve-2020-0601/index.mdx'
-import FPFtxQUuAllhcXAmcQFWPEIi from './cve-2020-0601/index.mdx';
-import { frontmatter as VKRxEbPfdTtcVVUiawKviUrK } from './dns-compression/index.mdx'
-import EsGtEhqkMQyxLzwqEVuAAmTo from './dns-compression/index.mdx';
-import { frontmatter as WwHBvcRsLnAYfFBsUFeGaguU } from './monad-in-java/index.mdx'
-import FYzzNVmdAmRqZHBAaETXsJbY from './monad-in-java/index.mdx';
+import { frontmatter as AhcZDYABwASGQuQDuIkXBdiE } from './anatomy-of-dns/index.mdx'
+import YnhyrRsiXyFyeUSjPDivOwQd from './anatomy-of-dns/index.mdx';
+import { frontmatter as QKETTbpExhKmCXDAuzlhsUAc } from './base64-in-rust/index.mdx'
+import RVAJRdrxYMmUZGRRPRpQfJBe from './base64-in-rust/index.mdx';
+import { frontmatter as JsGELktAXCrHTtXtvLpwinke } from './cve-2020-0601/index.mdx'
+import LofVSiAPTkvGdtyfUYjqeOGI from './cve-2020-0601/index.mdx';
+import { frontmatter as JVUztpkqJmVrmlEVUnCxgyYa } from './dns-compression/index.mdx'
+import WWhrvRyosYomcsDBCCbcIHCN from './dns-compression/index.mdx';
+import { frontmatter as XvkMlZjKoCZLxUmcbsHJrtOv } from './monad-in-java/index.mdx'
+import RJmTGxtJNhXawFMMIJudFqjE from './monad-in-java/index.mdx';
 
 const articles: Article[] = [
   {
     path: "anatomy-of-dns",
-    content: <MeXZBxIQKuJHhdfvnfTBgOXd />,
-    metadata: DuEiDqscCjgrydEDvcQmLhgW
+    content: <YnhyrRsiXyFyeUSjPDivOwQd />,
+    metadata: AhcZDYABwASGQuQDuIkXBdiE
   },
   {
     path: "base64-in-rust",
-    content: <HtbxHsVOLDLVQaDEtufWJvWM />,
-    metadata: JoSYvJVlZZDptZmmFSElLmkl
+    content: <RVAJRdrxYMmUZGRRPRpQfJBe />,
+    metadata: QKETTbpExhKmCXDAuzlhsUAc
   },
   {
     path: "cve-2020-0601",
-    content: <FPFtxQUuAllhcXAmcQFWPEIi />,
-    metadata: BCfIQFNmAEZqHhZdZiqANJZC
+    content: <LofVSiAPTkvGdtyfUYjqeOGI />,
+    metadata: JsGELktAXCrHTtXtvLpwinke
   },
   {
     path: "dns-compression",
-    content: <EsGtEhqkMQyxLzwqEVuAAmTo />,
-    metadata: VKRxEbPfdTtcVVUiawKviUrK
+    content: <WWhrvRyosYomcsDBCCbcIHCN />,
+    metadata: JVUztpkqJmVrmlEVUnCxgyYa
   },
   {
     path: "monad-in-java",
-    content: <FYzzNVmdAmRqZHBAaETXsJbY />,
-    metadata: WwHBvcRsLnAYfFBsUFeGaguU
+    content: <RJmTGxtJNhXawFMMIJudFqjE />,
+    metadata: XvkMlZjKoCZLxUmcbsHJrtOv
   },
 ]
 

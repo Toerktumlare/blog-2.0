@@ -20,7 +20,7 @@
 
 # misc
 - [x] extract folder utils and clean up build script
-- [ ] implement sizing to mdx images
+- [x] implement sizing to mdx images
 - [ ] padding in quote block (bottom)
 - [ ] fix list styling in mdx files
 - [ ] set unicorn icon in tab
