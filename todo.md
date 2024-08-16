@@ -35,6 +35,7 @@
 - [ ] setup build job to deploh to github pages
 - [ ] create skeleton component when images are loading
 - [ ] verify that tags selected are tags that exist
+- [ ] make text in warning box black
 - [x] fix styling of mermaid so that it doesnt look like crap
 - [x] implement react router
 - [x] loading frontmatter

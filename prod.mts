@@ -9,25 +9,24 @@ import { fileURLToPath } from "url";
 import { copyFile, ensureDirectoryExists, packArticles } from "./build/utils.mts";
 import { copyAssetsPlugin } from "./build/plugins.mts";
 
-const env = process.env.NODE_ENV || "development";
+const env = "production";
+const distDir = "dist";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const distDir = path.join(__dirname, "dist");
-
+console.log("===== Running ======")
 ensureDirectoryExists(distDir);
-copyFile('public/intex.html', 'dist/index.html');
+copyFile('public/index.html', 'dist/index.html');
 packArticles("./build");
 
-(async () => {
-  let ctx = await esbuild.context({
+esbuild.build({
     entryPoints: ["src/index.jsx"],
-    outfile: "dist/bundle.js",
+    outdir: distDir,
     logLevel: "info",
     bundle: true,
-    sourcemap: "inline",
+    splitting: true,
+    minify: true,
     define: { "process.env.NODE_ENV": JSON.stringify(env) },
     assetNames: "assets/[name]-[hash]",
+    format: 'esm',
     loader: {
       ".tsx": "tsx",
       ".jpg": "file",
@@ -48,13 +47,4 @@ packArticles("./build");
         rehypePlugins: [],
       }),
     ],
-  });
-
-  await ctx.watch();
-
-  let { host, port } = await ctx.serve({
-    servedir: "dist/",
-    fallback: `dist/index.html`,
-  });
-})();
-
+});

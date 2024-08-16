@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { PluginBuild } from "esbuild";
-import { ensureDirectoryExists, removeFirstDirectory } from './utils.mts';
+import { ensureDirectoryExists, ensureDirectoryExistsFromFile, removeFirstDirectory } from './utils.mts';
 
 export function copyAssetsPlugin({ sourceDir, outputDir }: any) {
   return {
@@ -9,7 +9,7 @@ export function copyAssetsPlugin({ sourceDir, outputDir }: any) {
     setup(build: PluginBuild) {
       build.onStart(() => {
         const copyFilesRecursively = (srcDir: string, destDir: string) => {
-          ensureDirectoryExists(outputDir)
+          ensureDirectoryExistsFromFile(outputDir)
 
           const items = fs.readdirSync(srcDir);
 
@@ -29,7 +29,7 @@ export function copyAssetsPlugin({ sourceDir, outputDir }: any) {
             } else {
               const ext = path.extname(item).toLowerCase();
               if ([".png", ".jpg", ".jpeg", ".gif", ".svg"].includes(ext)) {
-                ensureDirectoryExists(destPath);
+                ensureDirectoryExistsFromFile(destPath);
 
                 fs.copyFileSync(srcPath, destPath);
               }

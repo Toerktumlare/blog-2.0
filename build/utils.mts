@@ -3,8 +3,12 @@ import fs from "fs";
 import crypto from "crypto";
 import mustache from "mustache";
 
-export function ensureDirectoryExists(filePath: string) {
+export function ensureDirectoryExistsFromFile(filePath: string) {
   const dir = path.dirname(filePath);
+  ensureDirectoryExists(dir);
+};
+
+export function ensureDirectoryExists(dir: string) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
