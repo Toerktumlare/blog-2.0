@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-    - uses: actions/checkout@v4
+      uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
@@ -30,10 +30,10 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-    - run: npm install
+      run: npm install
 
     - name: Run esbuild and bundle app
-    - run: npm run build --if-present
+      run: npm run build --if-present
 
     - name: Verify build output
       run: ls -l dist
