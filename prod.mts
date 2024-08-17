@@ -14,7 +14,7 @@ copyFile('public/index.html', 'dist/index.html');
 copyFile('public/favicon.ico', 'dist/favicon.ico');
 packArticles("./build");
 
-const PUBLIC_URL = '/Blog-2.0'; // Replace with your actual repository name
+const PUBLIC_URL = '/blog-2.0'; // Replace with your actual repository name
 
 (async () => {
   await esbuild.build({
