@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 
-// Define the type for the props
 interface ScriptLoaderProps {
   src: string;
   async?: boolean;
   onLoad?: () => void;
 }
 
-const Script: React.FC<ScriptLoaderProps> = ({ src, async = true, onLoad }) => {
+export default function Script({ src, async = true, onLoad }: ScriptLoaderProps) {
   useEffect(() => {
     // Create a script element
     const script = document.createElement("script");
@@ -32,7 +31,5 @@ const Script: React.FC<ScriptLoaderProps> = ({ src, async = true, onLoad }) => {
     };
   }, [src, async, onLoad]); // Re-run if src or other props change
 
-  return null; // This component doesn't render anything itself
+  return null; 
 };
-
-export default Script;

@@ -18,8 +18,6 @@ import About from "./routes/about.tsx";
 import Root from "./routes/root.tsx";
 import Styleguide from "./routes/styleguide.tsx";
 
-console.log(articles);
-
 if (process.env.NODE_ENV !== "production") {
   new EventSource("/esbuild").addEventListener("change", (e) => {
     const { added, removed, updated } = JSON.parse(e.data);
@@ -97,7 +95,9 @@ const component = {
       {props.children}
     </p>
   ),
-  img: MdxImg,
+  img: (props: any) => (
+    <MdxImg src={props.src} height={props.height} width={props.width}/>
+  ),
   pre: (props: any) => (
     <pre
       style={{
