@@ -15,6 +15,7 @@ const distDir = "dist";
 console.log("===== Running ======")
 ensureDirectoryExists(distDir);
 copyFile('public/index.html', 'dist/index.html');
+copyFile('public/favicon.ico', 'dist/favicon.ico');
 packArticles("./build");
 
 esbuild.build({

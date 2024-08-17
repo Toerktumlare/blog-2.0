@@ -19,6 +19,7 @@ const loglevel = "info";
 
 ensureDirectoryExists(distDir);
 copyFile('public/index.html', 'dist/index.html');
+copyFile('public/favicon.ico', 'dist/favicon.ico');
 packArticles("./build");
 
 (async () => {
