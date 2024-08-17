@@ -21,12 +21,9 @@ packArticles("./build");
     outdir: distDir,
     logLevel: "info",
     bundle: true,
-    // splitting: true,
+    splitting: true,
     minify: true,
     assetNames: "assets/[name]-[hash]",
-    define: {
-    'process.env.PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL),
-  },
     format: 'esm',
     loader: {
       ".tsx": "tsx",
