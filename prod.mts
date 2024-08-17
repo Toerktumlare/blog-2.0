@@ -13,6 +13,7 @@ const distDir = "dist";
 ensureDirectoryExists(distDir);
 copyFile('public/index.html', 'dist/index.html');
 copyFile('public/favicon.ico', 'dist/favicon.ico');
+copyFile('build/CNAME', 'dist/CNAME');
 packArticles("./build");
 
 (async () => {
