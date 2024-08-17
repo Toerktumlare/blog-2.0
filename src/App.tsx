@@ -80,7 +80,7 @@ const router = createBrowserRouter([
   },
 ], {
   // ensure that base name for everything is the repository name for gh-pages links to work
-  basename: process.env.PUBLIC_URL,
+  basename: "/" + process.env.PUBLIC_URL,
 });
 
 const component = {
