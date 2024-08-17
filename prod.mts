@@ -23,7 +23,7 @@ esbuild.build({
     outdir: distDir,
     logLevel: "info",
     bundle: true,
-    splitting: true,
+    // splitting: true,
     minify: true,
     define: { "process.env.NODE_ENV": JSON.stringify(env) },
     assetNames: "assets/[name]-[hash]",
