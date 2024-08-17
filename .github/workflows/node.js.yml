@@ -9,9 +9,15 @@ on:
   pull_request:
     branches: [ "main" ]
 
+# permission for GITHUB_TOKEN
+permissions:
+  # read and checkout repo
+  contents: read
+  # permission to write to github pages
+  pages: write
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -37,3 +43,32 @@ jobs:
 
     - name: Verify build output
       run: ls -l dist
+    - uses: actions/upload-artifact@master
+      with:
+        name: github-pages
+        path: dist
+        if-no-files-found: error
+        overwrite: true
+
+  # deploy:
+  #   # dependent on previous build job
+  #   needs: build
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: download artifact created in previous step
+  #       uses: actions/download-artifact@master
+  #       with:
+  #         name: github-pages
+  #         path: dist
+  #     - name: Setup Pages
+  #       uses: actions/configure-pages@v5
+  #     - name: Upload artifact
+  #       uses: actions/upload-pages-artifact@v3
+  #       with:
+  #         path: 'dist'
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4
