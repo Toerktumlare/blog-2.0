@@ -15,6 +15,7 @@ permissions:
   contents: read
   # permission to write to github pages
   pages: write
+  id-token: write
 
 jobs:
   build:
