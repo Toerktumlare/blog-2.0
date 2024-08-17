@@ -22,6 +22,7 @@
 
 # ci/cd
 - [ ] setup build job to deploh to github pages
+- [ ] better error handling in the util build script for packing articles
 
 # app
 - [ ] set unicorn icon in tab
