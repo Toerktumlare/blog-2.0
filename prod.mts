@@ -14,8 +14,6 @@ copyFile('public/index.html', 'dist/index.html');
 copyFile('public/favicon.ico', 'dist/favicon.ico');
 packArticles("./build");
 
-const PUBLIC_URL = '/blog-2.0'; // Replace with your actual repository name
-
 (async () => {
   await esbuild.build({
     entryPoints: ["src/index.jsx"],
@@ -26,9 +24,6 @@ const PUBLIC_URL = '/blog-2.0'; // Replace with your actual repository name
     // splitting: true,
     minify: true,
     assetNames: "assets/[name]-[hash]",
-    define: {
-    'process.env.PUBLIC_URL': JSON.stringify(PUBLIC_URL),
-  },
     format: 'esm',
     loader: {
       ".tsx": "tsx",
