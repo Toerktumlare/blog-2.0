@@ -45,7 +45,7 @@ jobs:
       run: ls -l dist
     - uses: actions/upload-artifact@master
       with:
-        name: github-pages
+        name: bundle
         path: dist
         if-no-files-found: error
         overwrite: true
@@ -61,7 +61,7 @@ jobs:
       - name: download artifact created in previous step
         uses: actions/download-artifact@master
         with:
-          name: github-pages
+          name: bundle
           path: dist
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -69,7 +69,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'dist'
-          overwrite: true
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
