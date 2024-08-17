@@ -8,7 +8,6 @@ import { copyFile, ensureDirectoryExists, packArticles } from "./build/utils.mts
 import { copyAssetsPlugin } from "./build/plugins.mts";
 import path from "path";
 
-const env = "development";
 const distDir = "dist";
 const sourceDir = "src";
 const assetsDir = path.join(distDir, "assets");
@@ -25,11 +24,12 @@ packArticles("./build");
 (async () => {
   let ctx = await esbuild.context({
     entryPoints: [entryPoint],
+    platform: 'browser',
     outdir: distDir,
     logLevel: loglevel,
     bundle: true,
     sourcemap: "inline",
-    define: { "process.env.NODE_ENV": JSON.stringify(env) },
+    define: { 'process.env.NODE_ENV': `'development'` },
     assetNames: "assets/[name]-[hash]",
     loader: {
       ".tsx": "tsx",
