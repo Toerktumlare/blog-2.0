@@ -25,7 +25,7 @@ packArticles("./build");
     splitting: true,
     minify: true,
     define: {
-      "process.env.PUBLIC_URL": JSON.stringify(process.env.PUBLIC_URL || "").
+      "process.env.PUBLIC_URL": JSON.stringify(process.env.PUBLIC_URL || "")
     },
     assetNames: "assets/[name]-[hash]",
     format: 'esm',
