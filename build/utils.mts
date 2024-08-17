@@ -86,24 +86,12 @@ export function packArticles(buildDir: string) {
     const templateFilePath = path.join(buildDir, "article_template.mustache");
     const outputFilePath = path.join(contentDirPath, "articles.tsx");
 
-    fs.readFile(templateFilePath, "utf-8", (err, template) => {
-      if (err) {
-        return console.error("Error reading the template file:", err);
-      }
-      const renderedOutput = mustache.render(template, { articles: data });
+    const template = fs.readFileSync(templateFilePath, "utf-8");
+    const renderedOutput = mustache.render(template, { articles: data });
 
-      // Write the rendered output to a file
-      fs.writeFile(outputFilePath, renderedOutput, (err) => {
-        if (err) {
-          return console.error("Error writing the output file:", err);
-        }
-        console.log("Rendered output written to", outputFilePath);
-      });
-
-      console.log("Articles data", data);
-    });
-  } else {
-    console.log("The src/content directory does not exist.");
+    // Write the rendered output to a file
+    fs.writeFileSync(outputFilePath, renderedOutput);
+    console.log("Articles data", data);
   }
 }
 
@@ -140,9 +128,5 @@ export function generateRandomIdentifier(length: number): string {
 }
 
 export function copyFile(start: string, dest: string) {
-  fs.copyFile(start, dest, (err: any) => {
-    if (err) {
-      console.log("Error Found:", err);
-    }
-  });
+  fs.copyFileSync(start, dest);
 }
