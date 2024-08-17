@@ -18,8 +18,6 @@ import About from "./routes/about.tsx";
 import Root from "./routes/root.tsx";
 import Styleguide from "./routes/styleguide.tsx";
 
-console.log(process.env.NODE_ENV);
-console.log(process.env.PUBLIC_URL);
 if (process.env.NODE_ENV !== "production") {
   new EventSource("/esbuild").addEventListener("change", (e) => {
     const { added, removed, updated } = JSON.parse(e.data);
