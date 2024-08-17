@@ -6,6 +6,7 @@ import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import remarkPrism from "remark-prism";
 import { copyFile, ensureDirectoryExists, packArticles } from "./build/utils.mts";
 import { copyAssetsPlugin } from "./build/plugins.mts";
+import { stringify } from "querystring";
 
 const distDir = "dist";
 
@@ -23,6 +24,9 @@ packArticles("./build");
     bundle: true,
     splitting: true,
     minify: true,
+    define: {
+      "process.env.PUBLIC_URL": JSON.stringify(process.env.PUBLIC_URL || "").
+    },
     assetNames: "assets/[name]-[hash]",
     format: 'esm',
     loader: {
