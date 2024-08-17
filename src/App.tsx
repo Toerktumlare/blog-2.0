@@ -77,7 +77,9 @@ const router = createBrowserRouter([
     path: "/styleguide",
     element: <Styleguide />,
   },
-]);
+], {
+  basename: '/toerktumlare',  // Replace <repository-name> with your actual GitHub repository name
+});
 
 const component = {
   h1: h1,
@@ -121,6 +123,8 @@ const component = {
   Mermaid,
   Script,
 };
+
+const basename = '/<repository-name>'
 
 const App = () => {
   return (
