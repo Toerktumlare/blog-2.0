@@ -21,7 +21,7 @@
 - [ ] fix list styling in mdx files
 
 # ci/cd
-- [ ] setup build job to deploh to github pages
+- [x] setup build job to deploh to github pages
 - [ ] better error handling in the util build script for packing articles
 
 # app
