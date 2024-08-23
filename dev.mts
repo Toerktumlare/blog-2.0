@@ -29,7 +29,9 @@ packArticles("./build");
     logLevel: loglevel,
     bundle: true,
     sourcemap: "inline",
-    define: { 'process.env.NODE_ENV': `'development'` },
+    define: {
+      "process.env.PUBLIC_URL": JSON.stringify(process.env.PUBLIC_URL || "")
+    },
     assetNames: "assets/[name]-[hash]",
     loader: {
       ".tsx": "tsx",

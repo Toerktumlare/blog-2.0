@@ -6,7 +6,6 @@ import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import remarkPrism from "remark-prism";
 import { copyFile, ensureDirectoryExists, packArticles } from "./build/utils.mts";
 import { copyAssetsPlugin } from "./build/plugins.mts";
-import { stringify } from "querystring";
 
 const distDir = "dist";
 

@@ -15,7 +15,7 @@
 - [ ] build error page with unicorn, nyan cat
 
 # css
-- [ ] make text in warning box black
+- [x] make text in warning box black
 - [ ] fix code examples in dns message breakdown
 - [ ] padding in quote block (bottom)
 - [ ] fix list styling in mdx files
@@ -25,7 +25,7 @@
 - [ ] better error handling in the util build script for packing articles
 
 # app
-- [ ] set unicorn icon in tab
+- [x] set unicorn icon in tab
 - [ ] verify that tags selected are tags that exist
 - [ ] clean up and rename root file
 - [ ] clean up and rename app file

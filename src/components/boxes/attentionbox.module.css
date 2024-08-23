@@ -62,12 +62,17 @@ Content > code {
 
 .warning {
   background-color: var(--warning-color);
-  color: var(--font-dark-color);
   border-color: var(--dark-warning-color);
+  color: var(--font-dark-color);
 }
 
 .danger {
   background-color: var(--danger-color);
   border-color: var(--dark-danger-color);
   color: var(--font-color);
+}
+
+.content > :global p {
+  color: var(--font-dark-color);
+  margin-bottom: 0px;
 }
