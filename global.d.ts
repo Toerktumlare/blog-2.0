@@ -1,5 +1,6 @@
 declare module "*.module.css";
 declare module "*.jpg";
+declare module "*.gif";
 declare module "virtual:articles";
 declare module "*.mdx" {
   export const frontmatter: {
