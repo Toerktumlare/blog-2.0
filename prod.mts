@@ -14,6 +14,7 @@ copyFile('public/index.html', 'dist/index.html');
 copyFile('public/favicon.ico', 'dist/favicon.ico');
 copyFile('build/CNAME', 'dist/CNAME');
 packArticles("./build");
+const public_url = JSON.stringify(typeof process.env.PUBLIC_URL !== 'undefined' ? process.env.PUBLIC_URL : "");
 
 (async () => {
   await esbuild.build({
@@ -25,7 +26,7 @@ packArticles("./build");
     splitting: true,
     minify: true,
     define: {
-      "process.env.PUBLIC_URL": JSON.stringify(process.env.PUBLIC_URL || "")
+      "process.env.PUBLIC_URL": public_url
     },
     assetNames: "assets/[name]-[hash]",
     format: 'esm',
@@ -35,6 +36,7 @@ packArticles("./build");
       ".png": "file",
       ".css": "css",
       ".mdx": "jsx",
+      ".gif": "file",
     },
     plugins: [
       copyAssetsPlugin({ sourceDir: "src/content", outputDir: "dist/assets" }),

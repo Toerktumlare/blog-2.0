@@ -41,6 +41,7 @@ packArticles("./build");
       ".png": "file",
       ".css": "css",
       ".mdx": "jsx",
+      ".gif": "file",
     },
     plugins: [
       copyAssetsPlugin({ sourceDir: contentDir, outputDir: assetsDir }),

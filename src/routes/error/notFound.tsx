@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouteError, isRouteErrorResponse, Link } from 'react-router-dom';
 import styles from './notFound.module.css'
+import Cat from "../../images/nyancat.gif";
 
 export function NotFound() {
     const error = useRouteError();
@@ -12,9 +13,9 @@ export function NotFound() {
             <p>Oops! The page you're looking for doesn't exist.</p>
                 <Link to={`/`} className={styles.links}>
               <img
-                src="https://media.giphy.com/media/sIIhZliB2McAo/giphy.gif"
+                src={Cat}
                 alt="Nyan Cat"
-                className={styles.img}
+                className={styles.image}
               />
             </Link>
             <p>Click the kitteh to follow him back to the main page</p>

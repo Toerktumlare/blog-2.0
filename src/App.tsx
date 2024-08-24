@@ -17,7 +17,7 @@ import "./global.css";
 import About from "./routes/about.tsx";
 import Root from "./routes/root.tsx";
 import Styleguide from "./routes/styleguide.tsx";
-import { NotFound } from "./routes/error/NotFound.tsx";
+import { NotFound } from "./routes/error/notFound.tsx";
 
 if (process.env.NODE_ENV !== "production") {
   new EventSource("/esbuild").addEventListener("change", (e) => {
