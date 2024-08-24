@@ -1,0 +1,15 @@
+.image {
+  width: 300px;
+  height: auto;
+}
+
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.links:hover {
+  text-decoration: none;
+  background-color: var(--main-bg-color);
+}
+

@@ -15,11 +15,13 @@ const contentDir = path.join(sourceDir, "content");
 const entryPoint = path.join(sourceDir, "index.jsx");
 const fallback = path.join(distDir, "index.html");
 const loglevel = "info";
+const public_url = JSON.stringify(typeof process.env.PUBLIC_URL !== 'undefined' ? process.env.PUBLIC_URL : "");
 
 ensureDirectoryExists(distDir);
 copyFile('public/index.html', 'dist/index.html');
 copyFile('public/favicon.ico', 'dist/favicon.ico');
 packArticles("./build");
+
 
 (async () => {
   let ctx = await esbuild.context({
@@ -30,7 +32,7 @@ packArticles("./build");
     bundle: true,
     sourcemap: "inline",
     define: {
-      "process.env.PUBLIC_URL": JSON.stringify(process.env.PUBLIC_URL || "")
+      'process.env.PUBLIC_URL': public_url,
     },
     assetNames: "assets/[name]-[hash]",
     loader: {

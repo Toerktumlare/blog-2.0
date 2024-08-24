@@ -17,6 +17,7 @@ import "./global.css";
 import About from "./routes/about.tsx";
 import Root from "./routes/root.tsx";
 import Styleguide from "./routes/styleguide.tsx";
+import { NotFound } from "./routes/error/NotFound.tsx";
 
 if (process.env.NODE_ENV !== "production") {
   new EventSource("/esbuild").addEventListener("change", (e) => {
@@ -56,6 +57,7 @@ const routes = articles.map((article) => {
   };
 });
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,6 +66,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Root />,
+        errorElement: <NotFound />
       },
       {
         path: "/about",
@@ -71,6 +74,7 @@ const router = createBrowserRouter([
       },
       ...routes,
     ],
+    errorElement: <NotFound />
   },
   {
     path: "/styleguide",
@@ -78,7 +82,7 @@ const router = createBrowserRouter([
   },
 ], {
   // ensure that base name for everything is the repository name for gh-pages links to work
-  basename: "/" + (process?.env.PUBLIC_URL || ""),
+  basename: "/" + process.env.PUBLIC_URL,
 });
 
 const component = {
