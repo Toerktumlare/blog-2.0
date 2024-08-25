@@ -1,6 +1,7 @@
 import React, { type ReactNode } from "react"
 import { BiErrorAlt } from "react-icons/bi";
 import { AttentionBox, BoxType, Content, Header, Icon } from "./AttentionBox.js"
+import styles from "./dangerBox.module.css"
 
 export default function DangerBox({ children }: DangerProps) {
   return (
@@ -11,7 +12,7 @@ export default function DangerBox({ children }: DangerProps) {
         </Icon>
         danger
       </Header>
-      <Content>
+      <Content className={ styles.content }>
         {children}
       </Content>
     </AttentionBox>

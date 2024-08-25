@@ -31,6 +31,7 @@
   font-weight: bolder;
   align-items: center;
   justify-content: end;
+  padding-bottom: 10px;
 }
 
 .content {
@@ -72,7 +73,7 @@ Content > code {
   color: var(--font-color);
 }
 
-.content > :global p {
-  color: var(--font-dark-color);
+.content * {
   margin-bottom: 0px;
+  font-size: 16px;
 }

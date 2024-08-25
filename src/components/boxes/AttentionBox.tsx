@@ -45,9 +45,10 @@ export function Icon({ children }: Child ) {
   )
 }
 
-export function Content({ children }: Child ) {
+export function Content({ children, className }: Child ) {
+  let s = className ? className : styles.content;
   return (
-    <div className={styles.content}>
+    <div className={s}>
       {children}
     </div>
   )
@@ -76,4 +77,5 @@ interface BoxProps {
 
 interface Child {
   children: ReactNode
+  className?: string
 }

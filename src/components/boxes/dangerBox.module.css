@@ -1,0 +1,4 @@
+.content > :global p {
+  margin-bottom: 28px;
+  font-size: 14px;
+}

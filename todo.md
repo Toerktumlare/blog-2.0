@@ -16,8 +16,8 @@
 
 # css
 - [x] make text in warning box black
-- [ ] fix code examples in dns message breakdown
-- [ ] padding in quote block (bottom)
+- [x] fix code examples in dns message breakdown
+- [x] padding in quote block (bottom)
 - [ ] fix list styling in mdx files
 
 # ci/cd

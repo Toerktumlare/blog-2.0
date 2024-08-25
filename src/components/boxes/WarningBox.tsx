@@ -1,6 +1,7 @@
 import React, { type ReactNode } from "react"
 import { AiOutlineWarning } from "react-icons/ai";
 import { AttentionBox, BoxType, Content, Header, Icon } from "./AttentionBox.js"
+import styles from "./warningBox.module.css"
 
 const WarningBox = ({ children }: WarningProps) => {
   return (
@@ -11,7 +12,7 @@ const WarningBox = ({ children }: WarningProps) => {
         </Icon>
         warning
       </Header>
-      <Content>
+      <Content className={ styles.content }>
         {children}
       </Content>
     </AttentionBox>
