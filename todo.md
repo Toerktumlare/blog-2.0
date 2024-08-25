@@ -34,6 +34,7 @@
 - [ ] implement side by side image component
 - [ ] responsivness...
 - [ ] load css earlier so it does not show the previous styles first
+- [ ] add a next and prev button to each blogpost at the bottom
 
 # done
 - [x] fix styling of mermaid so that it doesnt look like crap
