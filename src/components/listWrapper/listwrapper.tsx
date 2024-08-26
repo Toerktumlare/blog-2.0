@@ -12,16 +12,16 @@ export default function ListWrapper({
       spacingClass = ".pb15";
       break;
     case Spacing.Large:
-      spacingClass = ".pb30";
+      spacingClass = "pb50";
       break;
     default:
-      spacingClass = ".pb60";
+      spacingClass = ".pb100";
       break;
   }
-  const listItems = items.map((value, i) => <li key={i}>{value}</li>);
+  const listItems = items.map((value, i) => <li className="pb130" key={i}>{value}</li>);
   return (
     <div className={className}>
-      <ol className={`${spacingClass} pl0 pr0`}>{listItems}</ol>
+      <ol className={`pl0 pr0`}>{listItems}</ol>
     </div>
   );
 }

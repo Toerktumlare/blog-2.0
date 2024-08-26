@@ -30,18 +30,18 @@ function BlogCard({
 
   return (
     <article className={`${className} ${styles.container}`}>
-      <header className="pb20">
+      <header className="pb10">
         <h3>
           <Link to={path}>{header}</Link>
         </h3>
       </header>
-      <section className="pb20">
-        <p className={styles.date}>{d}</p>
+      <section className="pb15">
+        <div className={styles.date}>{d}</div>
       </section>
-      <section className="pb20">
+      <footer className="pb30">{tagList}</footer>
+      <section>
         <p>{body}</p>
       </section>
-      <footer>{tagList}</footer>
     </article>
   );
 }

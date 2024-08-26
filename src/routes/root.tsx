@@ -23,7 +23,6 @@ export default function Root() {
         date={new Date(f.metadata.date)}
         body={f.metadata.description}
         tags={f.metadata.tags}
-        className="pb50"
       />
     );
   });

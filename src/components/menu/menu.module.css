@@ -20,8 +20,12 @@
     color: var(--secondary-color);
 }
 
-li:first-of-type {
+.menu li:first-of-type {
   margin-right: 30px;
+}
+
+.menu ul li::before {
+  content: none;
 }
 
 .logo {
