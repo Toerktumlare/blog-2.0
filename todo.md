@@ -12,13 +12,13 @@
 - [x] component for preview
 
 # error page
-- [ ] build error page with unicorn, nyan cat
+- [x] build error page with unicorn, nyan cat
 
 # css
 - [x] make text in warning box black
 - [x] fix code examples in dns message breakdown
 - [x] padding in quote block (bottom)
-- [ ] fix list styling in mdx files
+- [x] fix list styling in mdx files
 
 # ci/cd
 - [x] setup build job to deploh to github pages
@@ -26,6 +26,7 @@
 
 # app
 - [x] set unicorn icon in tab
+- [ ] build a content wrapper component with 20px margin left and right
 - [ ] verify that tags selected are tags that exist
 - [ ] clean up and rename root file
 - [ ] clean up and rename app file

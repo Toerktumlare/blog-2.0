@@ -33,6 +33,7 @@ function Styleguide() {
         date={new Date(Date.now())}
         body="Some body of some blogpost"
         tags={[Tags.Java, Tags.Rust]}
+        path=""
       />
       <hr />
       <br />

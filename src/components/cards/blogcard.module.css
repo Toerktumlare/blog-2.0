@@ -22,6 +22,6 @@
   font-size: 14px;
 }
 
-.none {
-  list-style: none
+.none > li::before {
+  content: none;
 }

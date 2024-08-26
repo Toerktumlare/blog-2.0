@@ -1,5 +1,5 @@
 import React from "react";
-import Menu from "../menu/menu";
+import Menu from "../menu/menu.tsx";
 import { standard } from "./header.module.css";
 
 const Header = () => {

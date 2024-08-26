@@ -20,8 +20,8 @@ export function ArticleHeader({ header, date, tags }: HeaderProps) {
       <h1>{header}</h1>
       <div className={styles.date}>{d}</div>
       <div className={styles.tags}>
-        {tags.map((t) => {
-          return <Tag text={t} />;
+        {tags.map((t, i) => {
+          return <Tag text={t} key={i}/>;
         })}
       </div>
     </header>
