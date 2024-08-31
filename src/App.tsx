@@ -1,7 +1,7 @@
 import { MDXProvider } from "@mdx-js/react";
 import React from "react";
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
   ScrollRestoration,
 } from "react-router-dom";
@@ -82,7 +82,7 @@ const routes = articles.sort((a, b) => {
 });
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Main />,
