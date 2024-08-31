@@ -45,13 +45,37 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-const routes = articles.map((article) => {
+const routes = articles.sort((a, b) => {
+    return (
+      new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
+    );
+  }).map((article, i) => {
+  console.log(article);
+  let prevArticle = articles[i - 1];
+  let nextArticle = articles[i + 1];
+  let prevArticleData;
+  let nextArticleData;
+
+  if (prevArticle) {
+    prevArticleData = { text: prevArticle.metadata.title, path: prevArticle.path }
+  }
+  
+  if (nextArticle) {
+    nextArticleData = { text: nextArticle.metadata.title, path: nextArticle.path }
+  }
+
   return {
     path: article.path,
     element: (
       <>
         <ScrollRestoration />
-        <Article frontmatter={article.metadata}>{article.content}</Article>
+        <Article
+          currentArticle={article.metadata}
+          prevArticle={prevArticleData}
+          nextArticle={nextArticleData}
+        >
+          {article.content}
+        </Article>
       </>
     ),
   };

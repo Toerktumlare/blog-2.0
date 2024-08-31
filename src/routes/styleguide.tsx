@@ -5,6 +5,7 @@ import WarningBox from "../components/boxes/WarningBox.tsx";
 import Blockquote from "../components/boxes/blockquote/blockquote.tsx";
 import BlogCard from "../components/cards/blogcard.tsx";
 import { Tags } from "../utils/tags.ts";
+import ArticleNav from "../components/articleNav/articlenav.tsx";
 
 function Styleguide() {
   return (
@@ -85,6 +86,15 @@ function Styleguide() {
         of Lorem Ipsum.
         </p>
       </DangerBox>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <ArticleNav next={{ text: "How base 64 actually works", path: "./Article" }} prev={{ text: "Everything you wanted to know about DNS", path: "./SomeThing" } }/>
     </div>
   );
 }

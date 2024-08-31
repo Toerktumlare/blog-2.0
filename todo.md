@@ -27,6 +27,7 @@
 # app
 - [x] set unicorn icon in tab
 - [x] build a content wrapper component with 20px margin left and right
+- [x] add a next and prev button to each blogpost at the bottom
 - [ ] verify that tags selected are tags that exist
 - [ ] clean up and rename root file
 - [ ] clean up and rename app file
@@ -35,7 +36,6 @@
 - [ ] implement side by side image component
 - [ ] responsivness...
 - [ ] load css earlier so it does not show the previous styles first
-- [ ] add a next and prev button to each blogpost at the bottom
 
 # done
 - [x] fix styling of mermaid so that it doesnt look like crap

@@ -1,0 +1,24 @@
+.content {
+    color: var(--primary-text-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.buttonContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonPrev {
+    text-align: left;
+}
+
+.buttonNext {
+    text-align: right;
+}
+
+.hidden {
+    visibility: hidden;
+}
