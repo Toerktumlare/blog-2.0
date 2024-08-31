@@ -6,6 +6,7 @@
   "author": "Toerktumlare",
   "license": "ISC",
   "type": "module",
+  "homepage": "https://blog.toerktumlare.com",
   "devDependencies": {
     "@mdx-js/esbuild": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
