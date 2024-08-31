@@ -26,7 +26,7 @@
 
 # app
 - [x] set unicorn icon in tab
-- [ ] build a content wrapper component with 20px margin left and right
+- [x] build a content wrapper component with 20px margin left and right
 - [ ] verify that tags selected are tags that exist
 - [ ] clean up and rename root file
 - [ ] clean up and rename app file

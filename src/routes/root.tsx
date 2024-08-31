@@ -6,7 +6,6 @@ import ListWrapper, {
 import articles from "../content/articles.tsx";
 import { Article } from "../content/types.tsx";
 import "../global.css";
-import styles from "./root.module.css";
 
 export default function Root() {
   articles.sort((a: Article, b: Article) => {
@@ -28,7 +27,7 @@ export default function Root() {
   });
 
   return (
-    <main className={styles.container}>
+    <main>
       <ListWrapper spacing={Spacing.Large} className="pt100" items={blogList} />
     </main>
   );
