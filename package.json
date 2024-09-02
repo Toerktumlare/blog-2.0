@@ -22,7 +22,7 @@
     "gray-matter": "^4.0.3",
     "mermaid": "^11.0.2",
     "mustache": "^4.2.0",
-    "prettier": "3.3.2",
+    "prettier": "3.3.3",
     "prettier-plugin-organize-imports": "^4.0.0",
     "prismjs": "1.29.0",
     "react-syntax-highlighter": "^15.5.0",
