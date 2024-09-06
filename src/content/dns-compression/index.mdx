@@ -154,8 +154,8 @@ This knowledge can give us a chart of how to read things
 <Mermaid>
 {`%%{init: {'theme':'dark'}}%%
 flowchart LR
-    A{take the first byte} --> B{"Are the first 2 bits set?"} -- Yes --> C{take second byte \nand parse as a u16}
-    B -- No --> D{"Is the entire byte set to zero?"} -- Yes --> E{Parse as NullByte} 
+    A{take the first byte} --> B{Are the first 2 bits set?} -- Yes --> C{take second byte \nand parse as a u16}
+    B -- No --> D{Is the entire byte set to zero?} -- Yes --> E{Parse as NullByte} 
     D -- No --> F{Parse as a length token}`}
 </Mermaid>
 
