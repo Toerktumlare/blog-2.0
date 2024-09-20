@@ -20,7 +20,7 @@
     "esbuild": "0.23.1",
     "frontmatter": "^0.0.3",
     "gray-matter": "^4.0.3",
-    "mermaid": "^11.2.0",
+    "mermaid": "^11.2.1",
     "mustache": "^4.2.0",
     "prettier": "3.3.3",
     "prettier-plugin-organize-imports": "^4.0.0",
