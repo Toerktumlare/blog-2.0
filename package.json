@@ -23,7 +23,7 @@
     "mermaid": "^11.2.1",
     "mustache": "^4.2.0",
     "prettier": "3.3.3",
-    "prettier-plugin-organize-imports": "^4.0.0",
+    "prettier-plugin-organize-imports": "^4.1.0",
     "prismjs": "1.29.0",
     "react-syntax-highlighter": "^15.5.0",
     "remark-frontmatter": "^5.0.0",
